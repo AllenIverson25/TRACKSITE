@@ -1,0 +1,26 @@
+{
+  "announcements": [
+    {"date": "2025-02-01", "title": "February Training Starts", "text": "Base building phase. Focus on consistency."},
+    {"date": "2025-01-28", "title": "Reminder", "text": "Log your weekly mileage."}
+  ],
+  "schedule": {
+    "week_feb2": {
+      "weekOf": "February 2–8, 2025",
+      "days": [
+        {"day":"Mon","date":"Feb 2","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
+        {"day":"Tue","date":"Feb 3","type":"Tempo","summary":"Warm-up + 4 mi @ tempo","workoutId":2,"isRest":false},
+        {"day":"Wed","date":"Feb 4","type":"Recovery","summary":"4 mi easy + strides","workoutId":3,"isRest":false},
+        {"day":"Thu","date":"Feb 5","type":"Intervals","summary":"8×400m @ 5K pace","workoutId":4,"isRest":false},
+        {"day":"Fri","date":"Feb 6","type":"Easy","summary":"4-5 mi recovery","workoutId":5,"isRest":false},
+        {"day":"Sat","date":"Feb 7","type":"Long","summary":"10 mi steady","workoutId":6,"isRest":false},
+        {"day":"Sun","date":"Feb 8","type":"Rest","summary":"Full rest","workoutId":null,"isRest":true}
+      ]
+    }
+    // add feb9, feb16, feb23 weeks similarly...
+  },
+  "workouts": [
+    {"id":1, "title":"Easy Run", "type":"easy", "effort":"easy", "distance":"5-6 mi", "duration":"40-55 min", "description":"Conversational pace..."},
+    {"id":2, "title":"Tempo Run", "type":"tempo", "effort":"moderate-hard", ...},
+    // add 3–6 + more as needed
+  ]
+}
