@@ -16,11 +16,13 @@
         {"day":"Sun","date":"Feb 8","type":"Rest","summary":"Full rest","workoutId":null,"isRest":true}
       ]
     }
-    // add feb9, feb16, feb23 weeks similarly...
   },
   "workouts": [
     {"id":1, "title":"Easy Run", "type":"easy", "effort":"easy", "distance":"5-6 mi", "duration":"40-55 min", "description":"Conversational pace..."},
-    {"id":2, "title":"Tempo Run", "type":"tempo", "effort":"moderate-hard", ...},
-    // add 3–6 + more as needed
+    {"id":2, "title":"Tempo Run", "type":"tempo", "effort":"moderate-hard", "distance":"4 mi", "duration":"30-40 min", "description":"Warm-up + 4 mi @ tempo pace..."},
+    {"id":3, "title":"Recovery Run", "type":"recovery", "effort":"easy", "distance":"4 mi", "duration":"35-45 min", "description":"Easy run with strides..."},
+    {"id":4, "title":"Interval Run", "type":"interval", "effort":"hard", "distance":"8×400m", "duration":"25-30 min", "description":"8×400m @ 5K pace..."},
+    {"id":5, "title":"Easy Run", "type":"easy", "effort":"easy", "distance":"4-5 mi", "duration":"35-50 min", "description":"Conversational pace..."},
+    {"id":6, "title":"Long Run", "type":"long", "effort":"steady", "distance":"10 mi steady run.", "duration":null, ...}
   ]
 }
