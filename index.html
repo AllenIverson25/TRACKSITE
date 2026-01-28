@@ -80,6 +80,24 @@
     </div>
   </div>
 </section>
+<section id="workouts" v-if="selectedWorkout" class="mb-5">
+  <h2 class="text-center mb-4">Workout Details</h2>
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">{{ selectedWorkout.title }}</h4>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <strong>Type:</strong> {{ selectedWorkout.type }}<br>
+        <strong>Effort:</strong> {{ selectedWorkout.effort }}<br>
+        <strong>Distance:</strong> {{ selectedWorkout.distance }}<br>
+        <strong>Duration:</strong> {{ selectedWorkout.duration }}
+      </div>
+      <p><strong>Description:</strong><br>{{ selectedWorkout.description }}</p>
+      <button class="btn btn-secondary" @click="selectedWorkout = null">Close Details</button>
+    </div>
+  </div>
+</section>
   </main>
   <footer></footer>
 
