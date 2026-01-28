@@ -29,8 +29,70 @@
 
   <main id="app" class="py-5">
     <div class="container">
-      <h1 class="text-center mb-5 animate-fade-in">Workout Library</h1>
+      <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1 class="text-center flex-grow-1 animate-fade-in">Workout Library</h1>
+        <button @click="showAddWorkoutForm = true" class="btn btn-success btn-lg">
+          <i class="bi bi-plus-circle"></i> Add Workout
+        </button>
+      </div>
       <img src="https://picsum.photos/800/300?random=3" alt="Workout library" class="img-fluid rounded shadow mb-5 animate-zoom-in">
+
+      <!-- Add Workout Modal -->
+      <div v-if="showAddWorkoutForm" class="workout-modal-overlay">
+        <div class="workout-modal">
+          <div class="modal-header">
+            <h5 class="modal-title">Create Custom Workout</h5>
+            <button type="button" class="btn-close" @click="showAddWorkoutForm = false"></button>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="addWorkout">
+              <div class="mb-3">
+                <label for="title" class="form-label">Workout Title *</label>
+                <input type="text" class="form-control" id="title" v-model="newWorkout.title" required>
+              </div>
+              <div class="mb-3">
+                <label for="type" class="form-label">Workout Type *</label>
+                <select class="form-select" id="type" v-model="newWorkout.type" required>
+                  <option value="">Select a type</option>
+                  <option value="easy">Easy</option>
+                  <option value="tempo">Tempo</option>
+                  <option value="recovery">Recovery</option>
+                  <option value="interval">Interval</option>
+                  <option value="long">Long Run</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="effort" class="form-label">Effort Level *</label>
+                <select class="form-select" id="effort" v-model="newWorkout.effort" required>
+                  <option value="">Select effort level</option>
+                  <option value="easy">Easy</option>
+                  <option value="moderate">Moderate</option>
+                  <option value="moderate-hard">Moderate-Hard</option>
+                  <option value="hard">Hard</option>
+                  <option value="steady">Steady</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="distance" class="form-label">Distance *</label>
+                <input type="text" class="form-control" id="distance" v-model="newWorkout.distance" placeholder="e.g., 5 mi, 8×400m" required>
+              </div>
+              <div class="mb-3">
+                <label for="duration" class="form-label">Duration (optional)</label>
+                <input type="text" class="form-control" id="duration" v-model="newWorkout.duration" placeholder="e.g., 45-60 min">
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description *</label>
+                <textarea class="form-control" id="description" v-model="newWorkout.description" rows="4" required></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" @click="showAddWorkoutForm = false">Cancel</button>
+                <button type="submit" class="btn btn-success">Add Workout</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
       <div v-if="selectedWorkout" class="mb-5">
         <div class="card shadow-lg">
