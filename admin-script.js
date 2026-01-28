@@ -42,7 +42,16 @@ if (document.getElementById('app')) {
         loginError: '',
         workouts: [],
         customWorkouts: [],
-        editingWorkout: null
+        editingWorkout: null,
+        showAddWorkoutForm: false,
+        newWorkout: {
+          title: '',
+          type: '',
+          effort: '',
+          distance: '',
+          duration: '',
+          description: ''
+        }
       };
     },
     methods: {
@@ -99,6 +108,37 @@ if (document.getElementById('app')) {
           this.customWorkouts = this.customWorkouts.filter(w => w.id !== workoutId);
           saveCustomWorkouts(this.customWorkouts);
           alert('Workout deleted successfully!');
+        }
+      },
+      addWorkout() {
+        if (this.newWorkout.title && this.newWorkout.type && this.newWorkout.effort && this.newWorkout.distance && this.newWorkout.description) {
+          const newId = Math.max(...this.workouts.map(w => w.id), 0) + 1;
+          const workout = {
+            id: newId,
+            title: this.newWorkout.title,
+            type: this.newWorkout.type,
+            effort: this.newWorkout.effort,
+            distance: this.newWorkout.distance,
+            duration: this.newWorkout.duration || null,
+            description: this.newWorkout.description,
+            isCustom: true
+          };
+          
+          this.workouts.push(workout);
+          this.customWorkouts.push(workout);
+          saveCustomWorkouts(this.customWorkouts);
+          
+          // Reset form
+          this.newWorkout = {
+            title: '',
+            type: '',
+            effort: '',
+            distance: '',
+            duration: '',
+            description: ''
+          };
+          this.showAddWorkoutForm = false;
+          alert('Workout added successfully!');
         }
       }
     },

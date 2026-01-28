@@ -53,7 +53,12 @@
       <div v-else class="admin-dashboard">
         <div class="d-flex justify-content-between align-items-center mb-5">
           <h1 class="animate-fade-in">Workout Management</h1>
-          <button @click="logout" class="btn btn-danger">Logout</button>
+          <div>
+            <button @click="showAddWorkoutForm = true" class="btn btn-success btn-lg me-2">
+              <i class="bi bi-plus-circle"></i> Add Workout
+            </button>
+            <button @click="logout" class="btn btn-danger">Logout</button>
+          </div>
         </div>
 
         <div class="row g-4">
@@ -68,6 +73,63 @@
                   <button @click="deleteWorkout(workout.id)" class="btn btn-sm btn-danger">Delete</button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Workout Modal -->
+        <div v-if="showAddWorkoutForm" class="workout-modal-overlay">
+          <div class="workout-modal">
+            <div class="modal-header">
+              <h5 class="modal-title">Create New Workout</h5>
+              <button type="button" class="btn-close" @click="showAddWorkoutForm = false"></button>
+            </div>
+            <div class="modal-body">
+              <form @submit.prevent="addWorkout">
+                <div class="mb-3">
+                  <label for="add-title" class="form-label">Workout Title *</label>
+                  <input type="text" class="form-control" id="add-title" v-model="newWorkout.title" required>
+                </div>
+                <div class="mb-3">
+                  <label for="add-type" class="form-label">Workout Type *</label>
+                  <select class="form-select" id="add-type" v-model="newWorkout.type" required>
+                    <option value="">Select a type</option>
+                    <option value="easy">Easy</option>
+                    <option value="tempo">Tempo</option>
+                    <option value="recovery">Recovery</option>
+                    <option value="interval">Interval</option>
+                    <option value="long">Long Run</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="add-effort" class="form-label">Effort Level *</label>
+                  <select class="form-select" id="add-effort" v-model="newWorkout.effort" required>
+                    <option value="">Select effort level</option>
+                    <option value="easy">Easy</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="moderate-hard">Moderate-Hard</option>
+                    <option value="hard">Hard</option>
+                    <option value="steady">Steady</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="add-distance" class="form-label">Distance *</label>
+                  <input type="text" class="form-control" id="add-distance" v-model="newWorkout.distance" required>
+                </div>
+                <div class="mb-3">
+                  <label for="add-duration" class="form-label">Duration (optional)</label>
+                  <input type="text" class="form-control" id="add-duration" v-model="newWorkout.duration">
+                </div>
+                <div class="mb-3">
+                  <label for="add-description" class="form-label">Description *</label>
+                  <textarea class="form-control" id="add-description" v-model="newWorkout.description" rows="4" required></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" @click="showAddWorkoutForm = false">Cancel</button>
+                  <button type="submit" class="btn btn-success">Add Workout</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

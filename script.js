@@ -14,6 +14,10 @@ function saveCustomWorkouts(workouts) {
   localStorage.setItem('customWorkouts', JSON.stringify(workouts));
 }
 
+function isCoachLoggedIn() {
+  return localStorage.getItem('adminLoggedIn') === 'true';
+}
+
 if (document.getElementById('app')) {
   const app = createApp({
     data() {
@@ -24,6 +28,7 @@ if (document.getElementById('app')) {
         selectedWorkout: null,
         selectedDay: null,
         showAddWorkoutForm: false,
+        isCoachLoggedIn: isCoachLoggedIn(),
         newWorkout: {
           title: '',
           type: '',
@@ -55,6 +60,11 @@ if (document.getElementById('app')) {
         return badges[effort] || 'bg-secondary';
       },
       addWorkout() {
+        if (!this.isCoachLoggedIn) {
+          alert('You must be logged in as a coach to add workouts. Please go to the Admin page and log in.');
+          return;
+        }
+        
         if (this.newWorkout.title && this.newWorkout.type && this.newWorkout.effort && this.newWorkout.distance && this.newWorkout.description) {
           const newId = Math.max(...this.workouts.map(w => w.id), 0) + 1;
           const workout = {
@@ -97,6 +107,9 @@ if (document.getElementById('app')) {
         // Load custom workouts from localStorage
         this.customWorkouts = loadCustomWorkouts();
         this.workouts = [...this.workouts, ...this.customWorkouts];
+        
+        // Check if coach is logged in
+        this.isCoachLoggedIn = isCoachLoggedIn();
 
         // Check for workout ID in URL
         const urlParams = new URLSearchParams(window.location.search);
