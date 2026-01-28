@@ -28,3 +28,34 @@ body{
 .nav-link:hover::after {
   width: 100%;
 }
+:root {
+  --primary: #0d6efd;
+  --primary-dark: #0b5ed7;
+  --dark: #212529;
+  --light-bg: #f8f9fa;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--light-bg);
+  color: var(--dark);
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.badge {
+  font-size: 0.85rem;
+  padding: 0.4em 0.8em;
+}
+
+@media (max-width: 576px) {
+  h1.display-5 { font-size: 2.5rem; }
+  .container { padding-left: 1rem; padding-right: 1rem; }
+}
