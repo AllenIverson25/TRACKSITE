@@ -1,25 +1,36 @@
 const { createApp } = Vue;
 
-const app = createApp({
-  data() {
-    return {
-      announcements: [],
-      schedule: {},
-      workouts: [],
-      selectedWorkout: null
-    };
-  },
-  async mounted() {
-    try {
-      const res = await fetch('./assets/data/data.json');
-      const data = await res.json();
-      this.announcements = data.announcements;
-      this.schedule = data.schedule;
-      this.workouts = data.workouts;
-    } catch (err) {
-      console.error("Data load failed", err);
-    }
-  }
-});
+async function loadData() {
+  const res = await fetch('./jason.json');
+  return await res.json();
+}
 
-app.mount('#app');
+if (document.getElementById('app')) {
+  const app = createApp({
+    data() {
+      return {
+        schedule: {},
+        workouts: [],
+        selectedWorkout: null
+      };
+    },
+    async mounted() {
+      try {
+        const data = await loadData();
+        this.schedule = data.schedule;
+        this.workouts = data.workouts;
+
+        // Check for workout ID in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const workoutId = urlParams.get('id');
+        if (workoutId) {
+          this.selectedWorkout = this.workouts.find(w => w.id == workoutId);
+        }
+      } catch (err) {
+        console.error("Data load failed", err);
+      }
+    }
+  });
+
+  app.mount('#app');
+}
