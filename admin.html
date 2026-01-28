@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marlboro XC Training Hub - Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Marlboro XC</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
+          <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a></li>
+          <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main id="app" class="py-5">
+    <div class="container">
+      <!-- Login Form -->
+      <div v-if="!isLoggedIn" class="login-container">
+        <div class="login-card">
+          <h1 class="text-center mb-4">Admin Login</h1>
+          <form @submit.prevent="login">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username" v-model="loginForm.username" required>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" v-model="loginForm.password" required>
+            </div>
+            <div v-if="loginError" class="alert alert-danger">{{ loginError }}</div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Admin Dashboard -->
+      <div v-else class="admin-dashboard">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+          <h1 class="animate-fade-in">Workout Management</h1>
+          <button @click="logout" class="btn btn-danger">Logout</button>
+        </div>
+
+        <div class="row g-4">
+          <div v-for="workout in workouts" :key="workout.id" class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-lg">
+              <div class="card-body">
+                <h5 class="card-title">{{ workout.title }}</h5>
+                <p class="card-text">{{ workout.type }} • {{ workout.distance }}</p>
+                <p v-if="workout.isCustom" class="badge bg-info">Custom</p>
+                <div class="btn-group w-100" role="group">
+                  <button @click="selectWorkoutToEdit(workout)" class="btn btn-sm btn-warning">Edit</button>
+                  <button @click="deleteWorkout(workout.id)" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Edit Workout Modal -->
+        <div v-if="editingWorkout" class="workout-modal-overlay">
+          <div class="workout-modal">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Workout</h5>
+              <button type="button" class="btn-close" @click="editingWorkout = null"></button>
+            </div>
+            <div class="modal-body">
+              <form @submit.prevent="saveWorkout">
+                <div class="mb-3">
+                  <label for="edit-title" class="form-label">Workout Title *</label>
+                  <input type="text" class="form-control" id="edit-title" v-model="editingWorkout.title" required>
+                </div>
+                <div class="mb-3">
+                  <label for="edit-type" class="form-label">Workout Type *</label>
+                  <select class="form-select" id="edit-type" v-model="editingWorkout.type" required>
+                    <option value="">Select a type</option>
+                    <option value="easy">Easy</option>
+                    <option value="tempo">Tempo</option>
+                    <option value="recovery">Recovery</option>
+                    <option value="interval">Interval</option>
+                    <option value="long">Long Run</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="edit-effort" class="form-label">Effort Level *</label>
+                  <select class="form-select" id="edit-effort" v-model="editingWorkout.effort" required>
+                    <option value="">Select effort level</option>
+                    <option value="easy">Easy</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="moderate-hard">Moderate-Hard</option>
+                    <option value="hard">Hard</option>
+                    <option value="steady">Steady</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="edit-distance" class="form-label">Distance *</label>
+                  <input type="text" class="form-control" id="edit-distance" v-model="editingWorkout.distance" required>
+                </div>
+                <div class="mb-3">
+                  <label for="edit-duration" class="form-label">Duration (optional)</label>
+                  <input type="text" class="form-control" id="edit-duration" v-model="editingWorkout.duration">
+                </div>
+                <div class="mb-3">
+                  <label for="edit-description" class="form-label">Description *</label>
+                  <textarea class="form-control" id="edit-description" v-model="editingWorkout.description" rows="4" required></textarea>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" @click="editingWorkout = null">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  </footer>
+
+  <script src="admin-script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
