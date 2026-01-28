@@ -1,13 +1,13 @@
 /* Advanced CSS for Marlboro XC Training Hub */
 
 :root {
-  --primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --secondary: #6c757d;
-  --success: #28a745;
-  --warning: #ffc107;
-  --dark: #212529;
+  --primary: linear-gradient(135deg, #003d82 0%, #1E5BA8 100%);
+  --secondary: #FFD700;
+  --success: #FFB81C;
+  --warning: #FFC107;
+  --dark: #003d82;
   --light: #f8f9fa;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow: 0 10px 30px rgba(0, 61, 130, 0.15);
   --border-radius: 15px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -220,7 +220,7 @@ footer {
 
 h1, h2, h3, h4, h5 {
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #003d82 0%, #FFD700 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -256,12 +256,12 @@ h1, h2, h3, h4, h5 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: linear-gradient(135deg, #003d82 0%, #1E5BA8 100%);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #5a6fd8;
+  background: #003d82;
 }
 
 /* Calendar Styles */
@@ -301,15 +301,15 @@ h1, h2, h3, h4, h5 {
 
 .day-button:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
-  border-color: #667eea;
+  box-shadow: 0 15px 40px rgba(0, 61, 130, 0.25);
+  border-color: #003d82;
 }
 
 .day-button.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #003d82 0%, #1E5BA8 100%);
   color: white;
   border-color: transparent;
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 61, 130, 0.4);
 }
 
 .rest-day .day-button {
@@ -343,8 +343,8 @@ h1, h2, h3, h4, h5 {
   font-size: 0.8rem;
   padding: 4px 8px;
   border-radius: 20px;
-  background: rgba(102, 126, 234, 0.15);
-  color: #667eea;
+  background: rgba(0, 61, 130, 0.15);
+  color: #003d82;
 }
 
 .day-button.active .workout-type {
@@ -434,7 +434,7 @@ h1, h2, h3, h4, h5 {
   margin-bottom: 20px;
   padding: 15px;
   background: #f8f9fa;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #003d82;
   border-radius: 8px;
 }
 
