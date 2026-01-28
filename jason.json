@@ -4,7 +4,7 @@
     {"date": "2025-01-28", "title": "Reminder", "text": "Log your weekly mileage."}
   ],
   "schedule": {
-    "week_feb2": {
+    "week_feb1": {
       "weekOf": "February 2–8, 2025",
       "days": [
         {"day":"Mon","date":"Feb 2","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
@@ -15,6 +15,41 @@
         {"day":"Sat","date":"Feb 7","type":"Long","summary":"10 mi steady","workoutId":6,"isRest":false},
         {"day":"Sun","date":"Feb 8","type":"Rest","summary":"Full rest","workoutId":null,"isRest":true}
       ]
+    },
+    "week_feb2": {
+      "weekOf": "February 9–15, 2025",
+      "days": [
+        {"day":"Mon","date":"Feb 9","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
+        {"day":"Tue","date":"Feb 10","type":"Intervals","summary":"10×400m @ 5K pace","workoutId":7,"isRest":false},
+        {"day":"Wed","date":"Feb 11","type":"Recovery","summary":"4 mi easy + strides","workoutId":3,"isRest":false},
+        {"day":"Thu","date":"Feb 12","type":"Tempo","summary":"Warm-up + 5 mi @ tempo","workoutId":8,"isRest":false},
+        {"day":"Fri","date":"Feb 13","type":"Easy","summary":"4-5 mi recovery","workoutId":5,"isRest":false},
+        {"day":"Sat","date":"Feb 14","type":"Long","summary":"11 mi steady","workoutId":9,"isRest":false},
+        {"day":"Sun","date":"Feb 15","type":"Rest","summary":"Full rest","workoutId":null,"isRest":true}
+      ]
+    },
+    "week_feb3": {
+      "weekOf": "February 16–22, 2025",
+      "days": [
+        {"day":"Mon","date":"Feb 16","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
+        {"day":"Tue","date":"Feb 17","type":"Tempo","summary":"Warm-up + 5 mi @ tempo","workoutId":8,"isRest":false},
+        {"day":"Wed","date":"Feb 18","type":"Recovery","summary":"4 mi easy + strides","workoutId":3,"isRest":false},
+        {"day":"Thu","date":"Feb 19","type":"Intervals","summary":"8×600m @ 5K pace","workoutId":10,"isRest":false},
+        {"day":"Fri","date":"Feb 20","type":"Easy","summary":"4-5 mi recovery","workoutId":5,"isRest":false},
+        {"day":"Sat","date":"Feb 21","type":"Long","summary":"12 mi steady","workoutId":11,"isRest":false},
+        {"day":"Sun","date":"Feb 22","type":"Rest","summary":"Full rest","workoutId":null,"isRest":true}
+      ]
+    },
+    "week_feb4": {
+      "weekOf": "February 23–28, 2025",
+      "days": [
+        {"day":"Mon","date":"Feb 23","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
+        {"day":"Tue","date":"Feb 24","type":"Intervals","summary":"6×800m @ 5K pace","workoutId":12,"isRest":false},
+        {"day":"Wed","date":"Feb 25","type":"Recovery","summary":"4 mi easy + strides","workoutId":3,"isRest":false},
+        {"day":"Thu","date":"Feb 26","type":"Tempo","summary":"Warm-up + 5 mi @ tempo","workoutId":8,"isRest":false},
+        {"day":"Fri","date":"Feb 27","type":"Easy","summary":"4-5 mi recovery","workoutId":5,"isRest":false},
+        {"day":"Sat","date":"Feb 28","type":"Long","summary":"13 mi steady","workoutId":13,"isRest":false}
+      ]
     }
   },
   "workouts": [
@@ -23,6 +58,13 @@
     {"id":3, "title":"Recovery Run", "type":"recovery", "effort":"easy", "distance":"4 mi", "duration":"35-45 min", "description":"Easy run with strides..."},
     {"id":4, "title":"Interval Run", "type":"interval", "effort":"hard", "distance":"8×400m", "duration":"25-30 min", "description":"8×400m @ 5K pace..."},
     {"id":5, "title":"Easy Run", "type":"easy", "effort":"easy", "distance":"4-5 mi", "duration":"35-50 min", "description":"Conversational pace..."},
-    {"id":6, "title":"Long Run", "type":"long", "effort":"steady", "distance":"10 mi steady run.", "duration":null, ...}
+    {"id":6, "title":"Long Run", "type":"long", "effort":"steady", "distance":"10 mi steady run.", "duration":null, "description":"Building endurance..."},
+    {"id":7, "title":"Interval Run", "type":"interval", "effort":"hard", "distance":"10×400m", "duration":"30-35 min", "description":"10×400m @ 5K pace..."},
+    {"id":8, "title":"Tempo Run", "type":"tempo", "effort":"moderate-hard", "distance":"5 mi", "effort":"moderate-hard", "distance":"5 mi", "duration":"35-45 min", "description":"Warm-up + 5 mi @ tempo pace..."},
+    {"id":9, "title":"Long Run", "type":"long", "effort":"steady", "distance":"11 mi", "duration":null, "description":"Building endurance..."},
+    {"id":10, "title":"Interval Run", "type":"interval", "effort":"hard", "distance":"8×600m", "duration":"30-35 min", "description":"8×600m @ 5K pace..."},
+    {"id":11, "title":"Long Run", "type":"long", "effort":"steady", "distance":"12 mi", "duration":null, "description":"Building endurance..."},
+    {"id":12, "title":"Interval Run", "type":"interval", "effort":"hard", "distance":"6×800m", "duration":"35-40 min", "description":"6×800m @ 5K pace..."},
+    {"id":13, "title":"Long Run", "type":"long", "effort":"steady", "distance":"13 mi", "duration":null, "description":"Building endurance..."}
   ]
 }
