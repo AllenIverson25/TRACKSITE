@@ -57,6 +57,29 @@
     </button>
   </div>
 </section>
+<section id="schedule" ref="schedule" class="mb-5">
+  <h2 class="text-center mb-4">Weekly Training Schedule</h2>
+
+  <div v-for="(week, weekKey) in schedule" :key="weekKey" class="mb-5">
+    <h4 class="text-center mb-3">{{ week.weekOf }}</h4>
+    <div class="row g-3">
+      <div v-for="day in week.days" :key="day.date" class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm" :class="{ 'border-primary': !day.isRest, 'bg-light': day.isRest }">
+          <div class="card-body">
+            <h5 class="card-title d-flex justify-content-between">
+              {{ day.day }} • {{ day.date }}
+              <span class="badge" :class="day.isRest ? 'bg-secondary' : 'bg-primary'">{{ day.type }}</span>
+            </h5>
+            <p class="card-text mb-3">{{ day.summary }}</p>
+            <button v-if="day.workoutId" class="btn btn-sm btn-outline-primary" @click="selectWorkout(day.workoutId)">
+              View Details →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
   </main>
   <footer></footer>
 
