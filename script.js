@@ -11,8 +11,30 @@ if (document.getElementById('app')) {
       return {
         schedule: {},
         workouts: [],
-        selectedWorkout: null
+        selectedWorkout: null,
+        selectedDay: null
       };
+    },
+    computed: {
+      selectedDayWorkout() {
+        if (!this.selectedDay || !this.selectedDay.workoutId) return null;
+        return this.workouts.find(w => w.id === this.selectedDay.workoutId);
+      }
+    },
+    methods: {
+      selectDay(day) {
+        this.selectedDay = day;
+      },
+      getEffortBadge(effort) {
+        const badges = {
+          'easy': 'bg-success',
+          'moderate': 'bg-warning',
+          'moderate-hard': 'bg-warning',
+          'hard': 'bg-danger',
+          'steady': 'bg-info'
+        };
+        return badges[effort] || 'bg-secondary';
+      }
     },
     async mounted() {
       try {

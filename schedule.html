@@ -29,23 +29,41 @@
 
   <main id="app" class="py-5">
     <div class="container">
-      <h1 class="text-center mb-5 animate-fade-in">Weekly Training Schedule</h1>
+      <h1 class="text-center mb-5 animate-fade-in">February Training Calendar</h1>
       <img src="https://picsum.photos/800/300?random=2" alt="Training schedule" class="img-fluid rounded shadow mb-5 animate-zoom-in">
 
-      <div v-for="(week, weekKey) in schedule" :key="weekKey" class="mb-5">
+      <div v-for="(week, weekKey) in schedule" :key="weekKey" class="mb-5 calendar-week">
         <h3 class="text-center mb-4">{{ week.weekOf }}</h3>
-        <div class="row g-3">
-          <div v-for="day in week.days" :key="day.date" class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-lg hover-lift" :class="{ 'border-primary': !day.isRest, 'bg-light': day.isRest }">
-              <div class="card-body">
-                <h5 class="card-title d-flex justify-content-between">
-                  {{ day.day }} • {{ day.date }}
-                  <span class="badge" :class="day.isRest ? 'bg-secondary' : 'bg-success'">{{ day.type }}</span>
-                </h5>
-                <p class="card-text mb-3">{{ day.summary }}</p>
-                <a v-if="day.workoutId" :href="'workouts.html?id=' + day.workoutId" class="btn btn-sm btn-outline-primary">View Details →</a>
-              </div>
-            </div>
+        <div class="calendar-grid">
+          <div v-for="day in week.days" :key="day.date" class="calendar-day" :class="{ 'rest-day': day.isRest }">
+            <button class="day-button" @click="selectDay(day)" :class="{ active: selectedDay && selectedDay.date === day.date }">
+              <div class="day-name">{{ day.day }}</div>
+              <div class="day-date">{{ day.date.split(' ')[1] }}</div>
+              <div v-if="!day.isRest" class="workout-type">{{ day.type }}</div>
+              <div v-else class="workout-type rest-label">REST</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workout Detail Modal -->
+      <div v-if="selectedDay" class="workout-detail-modal">
+        <div class="modal-content">
+          <button class="close-btn" @click="selectedDay = null">&times;</button>
+          <h2>{{ selectedDay.date }}</h2>
+          <h3 class="workout-title">{{ selectedDay.type }} Day</h3>
+          <div v-if="!selectedDay.isRest && selectedDayWorkout" class="workout-info">
+            <p class="summary"><strong>Workout:</strong> {{ selectedDay.summary }}</p>
+            <p><strong>Type:</strong> {{ selectedDayWorkout.type }}</p>
+            <p><strong>Distance:</strong> {{ selectedDayWorkout.distance }}</p>
+            <p v-if="selectedDayWorkout.duration"><strong>Duration:</strong> {{ selectedDayWorkout.duration }}</p>
+            <p><strong>Description:</strong> {{ selectedDayWorkout.description }}</p>
+            <p><strong>Effort Level:</strong> <span class="badge" :class="getEffortBadge(selectedDayWorkout.effort)">{{ selectedDayWorkout.effort }}</span></p>
+            <a :href="'workouts.html?id=' + selectedDayWorkout.id" class="btn btn-primary mt-3">View Full Workout Details →</a>
+          </div>
+          <div v-else class="workout-info">
+            <p class="text-muted">{{ selectedDay.summary }}</p>
+            <p class="rest-message">Take a break and recover! Rest days are crucial for building fitness.</p>
           </div>
         </div>
       </div>
