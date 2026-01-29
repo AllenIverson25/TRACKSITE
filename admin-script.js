@@ -18,6 +18,15 @@ function saveCustomWorkouts(workouts) {
   localStorage.setItem('customWorkouts', JSON.stringify(workouts));
 }
 
+function loadDeletedWorkoutIds() {
+  const saved = localStorage.getItem('deletedWorkoutIds');
+  return saved ? JSON.parse(saved) : [];
+}
+
+function saveDeletedWorkoutIds(ids) {
+  localStorage.setItem('deletedWorkoutIds', JSON.stringify(ids));
+}
+
 function isAdminLoggedIn() {
   return localStorage.getItem('adminLoggedIn') === 'true';
 }
@@ -76,7 +85,13 @@ if (document.getElementById('app')) {
         try {
           const data = await loadData();
           this.customWorkouts = loadCustomWorkouts();
-          this.workouts = [...data.workouts, ...this.customWorkouts];
+          const deletedIds = loadDeletedWorkoutIds();
+          
+          // Filter out deleted workouts
+          const activeWorkouts = data.workouts.filter(w => !deletedIds.includes(w.id));
+          const activeCustomWorkouts = this.customWorkouts.filter(w => !deletedIds.includes(w.id));
+          
+          this.workouts = [...activeWorkouts, ...activeCustomWorkouts];
         } catch (err) {
           console.error("Data load failed", err);
         }
@@ -107,6 +122,14 @@ if (document.getElementById('app')) {
           this.workouts = this.workouts.filter(w => w.id !== workoutId);
           this.customWorkouts = this.customWorkouts.filter(w => w.id !== workoutId);
           saveCustomWorkouts(this.customWorkouts);
+          
+          // Add to deleted IDs list
+          const deletedIds = loadDeletedWorkoutIds();
+          if (!deletedIds.includes(workoutId)) {
+            deletedIds.push(workoutId);
+            saveDeletedWorkoutIds(deletedIds);
+          }
+          
           alert('Workout deleted successfully!');
         }
       },
