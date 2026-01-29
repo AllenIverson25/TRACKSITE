@@ -9,22 +9,25 @@
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Marlboro XC</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+  <nav class="advanced-navbar">
+    <div class="navbar-container">
+      <a class="navbar-logo" href="index.html">
+        <span class="logo-icon">🏃‍♂️</span>
+        <span class="logo-text">Marlboro XC</span>
+      </a>
+      <button class="navbar-toggler" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a></li>
-          <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a></li>
-          <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-          <li class="nav-item"><a class="nav-link active" href="admin.html">Admin</a></li>
-        </ul>
-      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
+      </ul>
+      <div class="navbar-glow"></div>
     </div>
   </nav>
 

@@ -48,11 +48,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     if (scrollTop > 100) {
-      navbar.style.background = 'rgba(31, 39, 60, 0.95)';
-      navbar.style.boxShadow = '0 8px 32px 0 rgba(31, 39, 60, 0.5)';
+      navbar.style.background = 'rgba(0, 61, 130, 0.95)';
+      navbar.style.boxShadow = '0 8px 32px 0 rgba(0, 61, 130, 0.5)';
     } else {
-      navbar.style.background = 'rgba(31, 39, 60, 0.8)';
-      navbar.style.boxShadow = '0 8px 32px 0 rgba(31, 39, 60, 0.37)';
+      navbar.style.background = 'rgba(0, 61, 130, 0.8)';
+      navbar.style.boxShadow = '0 8px 32px 0 rgba(0, 61, 130, 0.37)';
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
