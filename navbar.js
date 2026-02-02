@@ -4,57 +4,64 @@ document.addEventListener('DOMContentLoaded', function() {
   const navMenu = document.getElementById('navMenu');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  // Toggle mobile menu
-  navToggle.addEventListener('click', function() {
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-  });
+  // Toggle mobile menu (defensive: only if elements exist)
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', function() {
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+  }
 
   // Close menu when a link is clicked and set active classes
-  navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      navToggle.classList.remove('active');
-      navMenu.classList.remove('active');
-
-      // Add active class to matching link / nav item
-      const currentFilename = this.getAttribute('href').split('/').pop() || 'index.html';
-
-      navLinks.forEach(l => {
-        const linkPage = l.getAttribute('href').split('/').pop() || 'index.html';
-        if (linkPage === currentFilename) {
-          l.classList.add('active');
-          l.parentElement.classList.add('active');
-        } else {
-          l.classList.remove('active');
-          l.parentElement.classList.remove('active');
+  if (navLinks && navLinks.length) {
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (navToggle && navMenu) {
+          navToggle.classList.remove('active');
+          navMenu.classList.remove('active');
         }
+
+        // Add active class to matching link / nav item
+        const currentFilename = this.getAttribute('href') ? this.getAttribute('href').split('/').pop() : 'index.html';
+
+        navLinks.forEach(l => {
+          const href = l.getAttribute('href') || 'index.html';
+          const linkPage = href.split('/').pop() || 'index.html';
+          if (linkPage === currentFilename) {
+            l.classList.add('active');
+            if (l.parentElement) l.parentElement.classList.add('active');
+          } else {
+            l.classList.remove('active');
+            if (l.parentElement) l.parentElement.classList.remove('active');
+          }
+        });
       });
     });
-  });
+  }
 
-  // Set active link on page load
+  // Set active link on page load (defensive)
   const currentFilename = window.location.pathname.split('/').pop() || 'index.html';
-  navLinks.forEach(link => {
-    const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
-    if (linkPage === currentFilename) {
-      link.classList.add('active');
-      link.parentElement.classList.add('active');
-    }
-  });
+  if (navLinks && navLinks.length) {
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href') || 'index.html';
+      const linkPage = href.split('/').pop() || 'index.html';
+      if (linkPage === currentFilename) {
+        link.classList.add('active');
+        if (link.parentElement) link.parentElement.classList.add('active');
+      }
+    });
+  }
 
-  // Add scroll effect to navbar
-  let lastScrollTop = 0;
+  // Add scroll effect to navbar (defensive)
   const navbar = document.querySelector('.advanced-navbar');
-
-  window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollTop > 100) {
-      navbar.classList.add('navbar-scrolled');
-    } else {
-      navbar.classList.remove('navbar-scrolled');
-    }
-
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  });
+  if (navbar) {
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > 100) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+  }
 });
