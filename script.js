@@ -29,6 +29,8 @@ if (document.getElementById('app')) {
         selectedDay: null,
         showAddWorkoutForm: false,
         isCoachLoggedIn: isCoachLoggedIn(),
+        searchQuery: '',
+        filterType: '',
         newWorkout: {
           title: '',
           type: '',
@@ -43,24 +45,70 @@ if (document.getElementById('app')) {
       selectedDayWorkout() {
         if (!this.selectedDay || !this.selectedDay.workoutId) return null;
         return this.workouts.find(w => w.id === this.selectedDay.workoutId);
+      },
+      filteredWorkouts() {
+        let filtered = this.workouts;
+        
+        // Apply search filter
+        if (this.searchQuery) {
+          const query = this.searchQuery.toLowerCase();
+          filtered = filtered.filter(w => 
+            w.title.toLowerCase().includes(query) ||
+            w.type.toLowerCase().includes(query) ||
+            w.distance.toLowerCase().includes(query) ||
+            w.description.toLowerCase().includes(query)
+          );
+        }
+        
+        // Apply type filter
+        if (this.filterType) {
+          filtered = filtered.filter(w => w.type === this.filterType);
+        }
+        
+        return filtered;
       }
     },
     methods: {
       selectDay(day) {
         this.selectedDay = day;
       },
+      selectWorkout(workout) {
+        this.selectedWorkout = workout;
+        // Scroll to top smoothly
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+      clearFilters() {
+        this.searchQuery = '';
+        this.filterType = '';
+      },
+      truncateText(text, length) {
+        if (!text) return '';
+        if (text.length <= length) return text;
+        return text.substring(0, length) + '...';
+      },
+      getTypeBadge(type) {
+        const badges = {
+          'easy': 'bg-success',
+          'tempo': 'bg-warning',
+          'recovery': 'bg-info',
+          'interval': 'bg-danger',
+          'long': 'bg-primary',
+          'custom': 'bg-secondary'
+        };
+        return badges[type] || 'bg-secondary';
+      },
       getEffortBadge(effort) {
         const badges = {
           'easy': 'bg-success',
-          'moderate': 'bg-warning',
+          'moderate': 'bg-info',
           'moderate-hard': 'bg-warning',
           'hard': 'bg-danger',
-          'steady': 'bg-info'
+          'steady': 'bg-primary'
         };
         return badges[effort] || 'bg-secondary';
       },
       addToCalendar(day) {
-        // Create a simple .ics calendar file for the selected day (placeholder start time)
+        // Create a simple .ics calendar file for the selected day
         const dt = new Date();
         const uid = 'marlboroxc-' + (day.date ? day.date.replace(/\s+/g,'-') : Date.now());
         const dtstamp = dt.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
@@ -135,10 +183,12 @@ if (document.getElementById('app')) {
           this.selectedWorkout = this.workouts.find(w => w.id == workoutId);
         }
 
-        // Keyboard shortcut: Escape closes the modal
+        // Keyboard shortcut: Escape closes modals
         window.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') {
             this.selectedDay = null;
+            this.selectedWorkout = null;
+            this.showAddWorkoutForm = false;
           }
         });
       } catch (err) {

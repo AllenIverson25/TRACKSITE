@@ -25,6 +25,7 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="mileage.html">Mileage</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a><span class="nav-indicator"></span></li>
@@ -33,106 +34,260 @@
     </div>
   </nav>
 
-  <main id="app" class="py-5">
+  <main id="app" class="py-4">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-5">
-        <h1 class="text-center flex-grow-1 animate-fade-in">Workout Library</h1>
-        <button v-if="isCoachLoggedIn" @click="showAddWorkoutForm = true" class="btn btn-success btn-lg">
-          <i class="bi bi-plus-circle"></i> Add Workout
+      <!-- Hero Section -->
+      <section class="hero-section gradient-primary mb-4">
+        <div class="hero-content">
+          <h1>💪 Workout Library</h1>
+          <p class="fs-5">Browse our comprehensive collection of training workouts designed for cross country excellence.</p>
+        </div>
+      </section>
+
+      <!-- Header with Add Button -->
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap" style="gap: 1rem;">
+        <div>
+          <h2 class="mb-2">Training Workouts</h2>
+          <p class="text-muted mb-0">{{ workouts.length }} workouts available</p>
+        </div>
+        <button v-if="isCoachLoggedIn" @click="showAddWorkoutForm = true" class="btn btn-success">
+          <i class="bi bi-plus-circle me-2"></i>Add New Workout
         </button>
       </div>
-      <img src="https://picsum.photos/800/300?random=3" alt="Workout library" class="img-fluid rounded shadow mb-5 animate-zoom-in">
+
+      <!-- Filter/Search Section -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body p-3">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-6">
+              <label class="form-label small fw-bold mb-2">Search Workouts</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                placeholder="Search by title, type, or distance..."
+                v-model="searchQuery">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label small fw-bold mb-2">Filter by Type</label>
+              <select class="form-select" v-model="filterType">
+                <option value="">All Types</option>
+                <option value="easy">Easy</option>
+                <option value="tempo">Tempo</option>
+                <option value="recovery">Recovery</option>
+                <option value="interval">Interval</option>
+                <option value="long">Long Run</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-outline-secondary w-100" @click="clearFilters">
+                <i class="bi bi-x-circle me-1"></i>Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workout Detail View (when a workout is selected) -->
+      <div v-if="selectedWorkout" class="workout-detail mb-4 animate-fade-in">
+        <div class="card shadow-lg">
+          <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">
+              <i class="bi bi-lightning-fill me-2"></i>{{ selectedWorkout.title }}
+            </h4>
+            <button class="btn btn-sm btn-light" @click="selectedWorkout = null">
+              <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row g-4">
+              <!-- Workout Image -->
+              <div class="col-lg-5">
+                <img src="https://picsum.photos/800/600?random=workout" class="img-fluid rounded shadow-sm mb-3" alt="Workout">
+                
+                <!-- Workout Specs -->
+                <div class="workout-specs">
+                  <div class="spec-item">
+                    <i class="bi bi-tag-fill text-primary"></i>
+                    <div>
+                      <strong>Type</strong>
+                      <span class="badge" :class="getTypeBadge(selectedWorkout.type)">
+                        {{ selectedWorkout.type }}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="spec-item">
+                    <i class="bi bi-speedometer2 text-warning"></i>
+                    <div>
+                      <strong>Effort</strong>
+                      <span class="badge" :class="getEffortBadge(selectedWorkout.effort)">
+                        {{ selectedWorkout.effort }}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div class="spec-item">
+                    <i class="bi bi-rulers text-success"></i>
+                    <div>
+                      <strong>Distance</strong>
+                      <span>{{ selectedWorkout.distance }}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="spec-item" v-if="selectedWorkout.duration">
+                    <i class="bi bi-clock-fill text-info"></i>
+                    <div>
+                      <strong>Duration</strong>
+                      <span>{{ selectedWorkout.duration }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Workout Details -->
+              <div class="col-lg-7">
+                <h5 class="fw-bold mb-3">Workout Description</h5>
+                <p class="lead text-muted">{{ selectedWorkout.description }}</p>
+                
+                <hr class="my-4">
+                
+                <h6 class="fw-bold mb-3">Training Tips</h6>
+                <ul class="training-tips">
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i>Warm up properly with 10-15 minutes of easy jogging</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i>Stay hydrated before, during, and after the workout</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i>Cool down with light stretching and walking</li>
+                  <li><i class="bi bi-check-circle-fill text-success me-2"></i>Listen to your body and adjust intensity if needed</li>
+                </ul>
+                
+                <div class="mt-4 d-flex gap-2 flex-wrap">
+                  <button class="btn btn-primary" @click="selectedWorkout = null">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Library
+                  </button>
+                  <a href="schedule.html" class="btn btn-outline-primary">
+                    <i class="bi bi-calendar-check me-2"></i>View Schedule
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workout Grid (when no workout is selected) -->
+      <div v-else>
+        <div v-if="filteredWorkouts.length === 0" class="text-center py-5">
+          <i class="bi bi-search" style="font-size: 4rem; color: var(--gray-400);"></i>
+          <h4 class="mt-3 text-muted">No workouts found</h4>
+          <p class="text-muted">Try adjusting your filters or search terms</p>
+        </div>
+
+        <div v-else class="workouts-grid">
+          <div v-for="workout in filteredWorkouts" :key="workout.id" class="workout-card-wrapper">
+            <div class="card workout-card h-100 shadow-sm">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <h5 class="card-title mb-0">{{ workout.title }}</h5>
+                  <span v-if="workout.isCustom" class="badge bg-info">
+                    <i class="bi bi-star-fill me-1"></i>Custom
+                  </span>
+                </div>
+                
+                <div class="workout-meta mb-3">
+                  <span class="badge" :class="getTypeBadge(workout.type)">
+                    {{ workout.type }}
+                  </span>
+                  <span class="text-muted mx-2">•</span>
+                  <span class="text-muted">
+                    <i class="bi bi-rulers me-1"></i>{{ workout.distance }}
+                  </span>
+                </div>
+                
+                <p class="card-text text-muted small mb-3">
+                  {{ truncateText(workout.description, 80) }}
+                </p>
+                
+                <div class="d-flex gap-2 mt-auto">
+                  <button @click="selectWorkout(workout)" class="btn btn-primary btn-sm flex-grow-1">
+                    <i class="bi bi-eye me-1"></i>View Details
+                  </button>
+                  <button class="btn btn-outline-secondary btn-sm">
+                    <i class="bi bi-bookmark"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Add Workout Modal -->
       <div v-if="showAddWorkoutForm" class="workout-modal-overlay">
         <div class="workout-modal">
           <div class="modal-header">
-            <h5 class="modal-title">Create Custom Workout</h5>
+            <h5 class="modal-title">
+              <i class="bi bi-plus-circle me-2"></i>Create Custom Workout
+            </h5>
             <button type="button" class="btn-close" @click="showAddWorkoutForm = false"></button>
           </div>
           <div class="modal-body">
             <form @submit.prevent="addWorkout">
               <div class="mb-3">
-                <label for="title" class="form-label">Workout Title *</label>
-                <input type="text" class="form-control" id="title" v-model="newWorkout.title" required>
+                <label for="title" class="form-label fw-bold">Workout Title *</label>
+                <input type="text" class="form-control" id="title" v-model="newWorkout.title" placeholder="e.g., Hill Repeats" required>
               </div>
+              
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="type" class="form-label fw-bold">Workout Type *</label>
+                  <select class="form-select" id="type" v-model="newWorkout.type" required>
+                    <option value="">Select type...</option>
+                    <option value="easy">Easy</option>
+                    <option value="tempo">Tempo</option>
+                    <option value="recovery">Recovery</option>
+                    <option value="interval">Interval</option>
+                    <option value="long">Long Run</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="effort" class="form-label fw-bold">Effort Level *</label>
+                  <select class="form-select" id="effort" v-model="newWorkout.effort" required>
+                    <option value="">Select effort...</option>
+                    <option value="easy">Easy</option>
+                    <option value="moderate">Moderate</option>
+                    <option value="moderate-hard">Moderate-Hard</option>
+                    <option value="hard">Hard</option>
+                    <option value="steady">Steady</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="distance" class="form-label fw-bold">Distance *</label>
+                  <input type="text" class="form-control" id="distance" v-model="newWorkout.distance" placeholder="e.g., 5 mi, 8×400m" required>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="duration" class="form-label fw-bold">Duration</label>
+                  <input type="text" class="form-control" id="duration" v-model="newWorkout.duration" placeholder="e.g., 45-60 min">
+                </div>
+              </div>
+              
               <div class="mb-3">
-                <label for="type" class="form-label">Workout Type *</label>
-                <select class="form-select" id="type" v-model="newWorkout.type" required>
-                  <option value="">Select a type</option>
-                  <option value="easy">Easy</option>
-                  <option value="tempo">Tempo</option>
-                  <option value="recovery">Recovery</option>
-                  <option value="interval">Interval</option>
-                  <option value="long">Long Run</option>
-                  <option value="custom">Custom</option>
-                </select>
+                <label for="description" class="form-label fw-bold">Description *</label>
+                <textarea class="form-control" id="description" v-model="newWorkout.description" rows="4" placeholder="Describe the workout in detail..." required></textarea>
               </div>
-              <div class="mb-3">
-                <label for="effort" class="form-label">Effort Level *</label>
-                <select class="form-select" id="effort" v-model="newWorkout.effort" required>
-                  <option value="">Select effort level</option>
-                  <option value="easy">Easy</option>
-                  <option value="moderate">Moderate</option>
-                  <option value="moderate-hard">Moderate-Hard</option>
-                  <option value="hard">Hard</option>
-                  <option value="steady">Steady</option>
-                </select>
-              </div>
-              <div class="mb-3">
-                <label for="distance" class="form-label">Distance *</label>
-                <input type="text" class="form-control" id="distance" v-model="newWorkout.distance" placeholder="e.g., 5 mi, 8×400m" required>
-              </div>
-              <div class="mb-3">
-                <label for="duration" class="form-label">Duration (optional)</label>
-                <input type="text" class="form-control" id="duration" v-model="newWorkout.duration" placeholder="e.g., 45-60 min">
-              </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Description *</label>
-                <textarea class="form-control" id="description" v-model="newWorkout.description" rows="4" required></textarea>
-              </div>
+              
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" @click="showAddWorkoutForm = false">Cancel</button>
-                <button type="submit" class="btn btn-success">Add Workout</button>
+                <button type="submit" class="btn btn-success">
+                  <i class="bi bi-check-circle me-2"></i>Add Workout
+                </button>
               </div>
             </form>
-          </div>
-        </div>
-      </div>
-
-      <div v-if="selectedWorkout" class="mb-5">
-        <div class="card shadow-lg">
-          <div class="card-header bg-success text-white">
-            <h4 class="mb-0">{{ selectedWorkout.title }}</h4>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
-                <strong>Type:</strong> {{ selectedWorkout.type }}<br>
-                <strong>Effort:</strong> {{ selectedWorkout.effort }}<br>
-                <strong>Distance:</strong> {{ selectedWorkout.distance }}<br>
-                <strong>Duration:</strong> {{ selectedWorkout.duration }}
-              </div>
-              <div class="col-md-6">
-                <img src="https://picsum.photos/400/200?random=4" alt="Workout" class="img-fluid rounded">
-              </div>
-            </div>
-            <p class="mt-3"><strong>Description:</strong><br>{{ selectedWorkout.description }}</p>
-            <a href="workouts.html" class="btn btn-secondary">Back to Library</a>
-          </div>
-        </div>
-      </div>
-
-      <div v-else>
-        <div class="row workouts-grid">
-          <div v-for="workout in workouts" :key="workout.id" class="col-md-6 col-lg-6">
-            <div class="card h-100 shadow-lg hover-lift">
-              <div class="card-body">
-                <h5 class="card-title">{{ workout.title }}</h5>
-                <p class="card-text">{{ workout.type }} • {{ workout.distance }}</p>
-                <a :href="'workouts.html?id=' + workout.id" class="btn btn-primary">View Details</a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
