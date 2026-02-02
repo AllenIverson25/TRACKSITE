@@ -33,31 +33,140 @@
 
   <main class="py-5">
     <div class="container">
-      <h1 class="text-center mb-5 animate-fade-in">Contact Us</h1>
-      <img src="https://picsum.photos/800/300?random=6" alt="Contact" class="img-fluid rounded shadow mb-5 animate-zoom-in">
+      <h1 class="text-center mb-4 animate-fade-in">Contact Us</h1>
 
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="card shadow-lg">
-            <div class="card-body text-center">
-              <h5 class="text-primary mb-4">Get in Touch</h5>
-              <p class="mb-4">For questions about training or to join the team, contact Coach at:</p>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="contact-item">
-                    <i class="bi bi-envelope-fill text-primary fs-1 mb-2"></i>
-                    <h6>Email</h6>
-                    <p>coach@marlboroxc.com</p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="contact-item">
-                    <i class="bi bi-telephone-fill text-success fs-1 mb-2"></i>
-                    <h6>Phone</h6>
-                    <p>(555) 123-4567</p>
-                  </div>
-                </div>
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <div class="video-embed mb-3">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Coach Intro" allowfullscreen></iframe>
+          </div>
+
+          <div class="card card-announce shadow-sm mb-3">
+            <div class="card-body">
+              <h5>Office Hours</h5>
+              <p>Mon–Fri: 4:00pm–7:00pm • Sat: 8:00am–10:00am</p>
+              <div class="audio-player">
+                <audio controls>
+                  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+                <small class="text-muted">Coach's training tips (2 min)</small>
               </div>
+            </div>
+          </div>
+
+          <div class="card card-announce shadow-sm">
+            <div class="card-body">
+              <h5>Follow Us</h5>
+              <p>Instagram • Facebook • YouTube</p>
+              <div class="d-flex gap-2">
+                <a class="btn btn-outline-primary" href="#">Instagram</a>
+                <a class="btn btn-outline-primary" href="#">Facebook</a>
+                <a class="btn btn-outline-primary" href="#">YouTube</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card shadow-lg">
+            <div class="card-body">
+              <h5 class="text-primary mb-3">Get in Touch — Send us a message</h5>
+              <p class="mb-3">We reply within 24–48 hours. Please include your grade level and any previous running experience.</p>
+
+              <form id="contactForm">
+                <div class="mb-3">
+                  <label class="form-label">Full Name</label>
+                  <input class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Email</label>
+                  <input type="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Message</label>
+                  <textarea class="form-control" rows="5" required></textarea>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">Prefer to chat? Text: (555) 123-4567</small>
+                  <button class="btn btn-primary">Send Message</button>
+                </div>
+              </form>
+
+              <hr class="my-4">
+
+              <section class="coaches-section">
+                <h3 class="mb-3">Meet the Coaches</h3>
+                <div class="coach-grid mb-3">
+                  <div class="coach-card">
+                    <img src="https://picsum.photos/seed/coach1/200/200" alt="Coach Sam">
+                    <div>
+                      <h5>Coach Sam</h5>
+                      <p>Head coach focusing on endurance and technique.</p>
+                      <div class="audio-player">
+                        <audio controls>
+                          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+                        </audio>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="coach-card">
+                    <img src="https://picsum.photos/seed/coach2/200/200" alt="Coach Riley">
+                    <div>
+                      <h5>Coach Riley</h5>
+                      <p>Strength &amp; conditioning specialist.</p>
+                      <div class="audio-player">
+                        <audio controls>
+                          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+                        </audio>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="faq mb-3">
+                <h3 class="mb-3">FAQ</h3>
+                <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="q1">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                        How do I join?
+                      </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">Fill out the contact form and the coach will follow up with next steps.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="q2">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        What should I wear?
+                      </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">Wear comfortable running clothes and bring water. We recommend spikes for track sessions during race season.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="map mb-3">
+                <h3 class="mb-3">Find Us</h3>
+                <div class="map-embed mb-3">
+                  <iframe src="https://maps.google.com/maps?q=Boston,MA&amp;output=embed" width="100%" height="260" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+              </section>
+
+              <section class="newsletter">
+                <h3 class="mb-3">Stay in the loop</h3>
+                <form id="newsletterForm" class="d-flex gap-2">
+                  <input type="email" class="form-control" placeholder="Your email" required>
+                  <button class="btn btn-warning">Subscribe</button>
+                </form>
+              </section>
+
             </div>
           </div>
         </div>
@@ -65,10 +174,16 @@
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
   </footer>
 
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); alert('Message sent — we will reply within 48 hours.'); e.target.reset(); });
+    document.getElementById('newsletterForm').addEventListener('submit', function(e){ e.preventDefault(); alert('Subscribed — check your inbox.'); e.target.reset(); });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="navbar.js"></script>
 </body>

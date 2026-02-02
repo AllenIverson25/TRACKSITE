@@ -33,8 +33,15 @@
 
   <main id="app" class="py-5">
     <div class="container">
-      <h1 class="text-center mb-5 animate-fade-in">February Training Calendar</h1>
-      <img src="https://picsum.photos/800/300?random=2" alt="Training schedule" class="img-fluid rounded shadow mb-5 animate-zoom-in">
+      <h1 class="text-center mb-4 animate-fade-in">February Training Calendar</h1>
+
+      <div class="video-embed mb-4">
+        <video autoplay muted loop playsinline>
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="alert alert-light shadow-sm mb-4">Weekly highlights & tips are here — watch the short clip above for coaching notes.</div>
 
       <div v-for="(week, weekKey) in schedule" :key="weekKey" class="mb-5 calendar-week">
         <h3 class="text-center mb-4">{{ week.weekOf }}</h3>
@@ -50,32 +57,56 @@
         </div>
       </div>
 
-      <!-- Workout Detail Modal -->
-      <div v-if="selectedDay" class="workout-detail-modal">
-        <div class="modal-content">
-          <button class="close-btn" @click="selectedDay = null">&times;</button>
-          <h2>{{ selectedDay.date }}</h2>
-          <h3 class="workout-title">{{ selectedDay.type }} Day</h3>
-          <div v-if="!selectedDay.isRest && selectedDayWorkout" class="workout-info">
-            <p class="summary"><strong>Workout:</strong> {{ selectedDay.summary }}</p>
-            <p><strong>Type:</strong> {{ selectedDayWorkout.type }}</p>
-            <p><strong>Distance:</strong> {{ selectedDayWorkout.distance }}</p>
-            <p v-if="selectedDayWorkout.duration"><strong>Duration:</strong> {{ selectedDayWorkout.duration }}</p>
-            <p><strong>Description:</strong> {{ selectedDayWorkout.description }}</p>
-            <p><strong>Effort Level:</strong> <span class="badge" :class="getEffortBadge(selectedDayWorkout.effort)">{{ selectedDayWorkout.effort }}</span></p>
-            <a :href="'workouts.html?id=' + selectedDayWorkout.id" class="btn btn-primary mt-3">View Full Workout Details →</a>
+      <!-- Workout Detail Modal (rich overlay) -->
+      <div v-if="selectedDay" class="workout-modal-overlay" @click.self="selectedDay = null">
+        <div class="workout-modal">
+          <div class="modal-header">
+            <h5 class="modal-title">{{ selectedDay.date }} — {{ selectedDay.day }}</h5>
+            <button type="button" class="btn-close" @click="selectedDay = null"></button>
           </div>
-          <div v-else class="workout-info">
-            <p class="text-muted">{{ selectedDay.summary }}</p>
-            <p class="rest-message">Take a break and recover! Rest days are crucial for building fitness.</p>
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div v-if="!selectedDay.isRest" class="video-embed mb-3">
+                  <video controls>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <img v-if="selectedDay.isRest" :src="'https://picsum.photos/seed/'+selectedDay.date+'/800/400'" class="img-fluid rounded mb-3" alt="Day image" loading="lazy">
+                <div class="audio-player">
+                  <audio controls>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                  <small class="text-muted">Coach's tip (30s)</small>
+                </div>
+                <div class="transcript mt-2">Transcript: Quick tip — keep it steady and controlled after hard sessions.</div>
+              </div>
+
+              <div class="col-md-6">
+                <h4>{{ selectedDay.summary || (selectedDayWorkout ? selectedDayWorkout.title : 'Rest Day') }}</h4>
+                <p v-if="selectedDayWorkout"><strong>Workout:</strong> {{ selectedDayWorkout.description }}</p>
+                <p v-else>{{ selectedDay.summary }}</p>
+
+                <div class="d-flex gap-2 mt-3">
+                  <a :href="'workouts.html?id=' + (selectedDayWorkout ? selectedDayWorkout.id : '')" class="btn btn-primary" v-if="selectedDayWorkout">View Workout</a>
+                  <button class="btn btn-success" @click="addToCalendar(selectedDay)">Add to Calendar</button>
+                  <a class="btn btn-outline-secondary" :href="'https://www.google.com/maps/search/?api=1&query=Marlboro+XC+Track'" target="_blank">View Location</a>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
