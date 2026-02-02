@@ -4,37 +4,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marlboro XC Training Hub - Admin</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Marlboro XC</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+  <nav class="advanced-navbar">
+    <div class="navbar-container">
+      <a class="navbar-logo" href="index.html">
+        <span class="logo-icon">🏃‍♂️</span>
+        <span class="logo-text">Marlboro XC</span>
+      </a>
+      <button class="navbar-toggler" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
       <ul class="nav-menu" id="navMenu">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="mileage.html">Mileage</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a><span class="nav-indicator"></span></li>
       </ul>
-      </div>
+      <div class="navbar-glow"></div>
     </div>
   </nav>
 
   <main id="app" class="py-5">
     <div class="container">
+      <section class="hero-section gradient-navy mt-3 mb-5" v-if="!isLoggedIn">
+        <div class="hero-content">
+          <h1>🔐 Admin Dashboard</h1>
+          <p class="fs-5">Manage schedules, workouts, and team data with ease.</p>
+        </div>
+      </section>
+
       <!-- Login Form -->
       <div v-if="!isLoggedIn" class="login-container">
         <div class="login-card">
-          <h1 class="text-center mb-4">Admin Login</h1>
+          <h2 class="text-center mb-4">Secure Login</h2>
           <form @submit.prevent="login">
             <div class="mb-3">
               <label for="username" class="form-label">Username</label>
@@ -195,11 +207,16 @@
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="admin-script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="navbar.js"></script>
+</body>
+</html>
 </body>
 </html>

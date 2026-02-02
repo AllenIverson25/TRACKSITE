@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marlboro XC Training Hub - Contact</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,6 +23,7 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="mileage.html">Mileage</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a><span class="nav-indicator"></span></li>
@@ -33,31 +34,212 @@
 
   <main class="py-5">
     <div class="container">
-      <h1 class="text-center mb-5 animate-fade-in">Contact Us</h1>
-      <img src="https://picsum.photos/800/300?random=6" alt="Contact" class="img-fluid rounded shadow mb-5 animate-zoom-in">
+      <section class="hero-section gradient-dark mt-3 mb-5">
+        <div class="hero-content">
+          <h1>📞 Get In Touch</h1>
+          <p class="fs-5">Connect with our coaching staff and join the Marlboro XC family.</p>
+        </div>
+      </section>
 
-      <div class="row justify-content-center">
-        <div class="col-md-8">
+      <div class="row align-items-stretch g-4 mb-5">
+        <div class="col-lg-8">
           <div class="card shadow-lg">
-            <div class="card-body text-center">
-              <h5 class="text-primary mb-4">Get in Touch</h5>
-              <p class="mb-4">For questions about training or to join the team, contact Coach at:</p>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="contact-item">
-                    <i class="bi bi-envelope-fill text-primary fs-1 mb-2"></i>
-                    <h6>Email</h6>
-                    <p>coach@marlboroxc.com</p>
-                  </div>
+            <div class="card-body p-4">
+              <h5 class="text-primary mb-3 fw-bold">Get in Touch</h5>
+              <p class="mb-4">We reply within 24–48 hours. Please include your grade level and any previous running experience.</p>
+
+              <form id="contactForm">
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Full Name</label>
+                  <input class="form-control" required>
                 </div>
-                <div class="col-md-6">
-                  <div class="contact-item">
-                    <i class="bi bi-telephone-fill text-success fs-1 mb-2"></i>
-                    <h6>Phone</h6>
-                    <p>(555) 123-4567</p>
-                  </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Email</label>
+                  <input type="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Grade Level</label>
+                  <select class="form-select" required>
+                    <option value="">Select...</option>
+                    <option>Freshman</option>
+                    <option>Sophomore</option>
+                    <option>Junior</option>
+                    <option>Senior</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Message</label>
+                  <textarea class="form-control" rows="5" placeholder="Tell us about yourself..." required></textarea>
+                </div>
+                <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <small class="text-muted">📞 Prefer to chat? Text: (555) 123-4567</small>
+                  <button class="btn btn-primary">Send Message →</button>
+                </div>
+              </form>
+
+              <hr class="my-4">
+
+              <section class="quick-contact">
+                <h5 class="mb-3 fw-bold">Quick Contact</h5>
+                <div class="contact-methods mb-3">
+                  <p class="mb-2">📧 <strong>Email:</strong> <a href="mailto:coach@marlborough-xc.org">coach@marlborough-xc.org</a></p>
+                  <p class="mb-2">📍 <strong>Location:</strong> Marlboro High School Track</p>
+                  <p><strong>🕐 Response Time:</strong> 24-48 hours</p>
+                </div>
+              </section>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card shadow-sm mb-3 h-100">
+              <img src="https://picsum.photos/600/300?random=30" class="card-img-top" alt="Office Hours" loading="lazy">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Office Hours</h5>
+                <p class="flex-grow-1"><strong>Mon–Fri:</strong> 4:00pm–7:00pm<br><strong>Sat:</strong> 8:00am–10:00am</p>
+                <div class="audio-player">
+                  <audio controls style="width: 100%; margin-bottom: 10px;">
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                  </audio>
+                  <small class="text-muted d-block">Coach's training tips (2 min)</small>
                 </div>
               </div>
+            </div>
+
+            <div class="card shadow-sm h-100">
+              <img src="https://picsum.photos/600/300?random=31" class="card-img-top" alt="Follow Us" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Follow Us</h5>
+                <p class="text-muted small">Stay updated with daily training tips and team updates.</p>
+                <div class="d-flex gap-2 flex-column">
+                  <a class="btn btn-sm btn-outline-primary" href="#" target="_blank">📱 Instagram</a>
+                  <a class="btn btn-sm btn-outline-primary" href="#" target="_blank">📘 Facebook</a>
+                  <a class="btn btn-sm btn-outline-primary" href="#" target="_blank">▶️ YouTube</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4 mb-5">
+          <div class="col-12">
+            <div class="video-embed rounded shadow-lg">
+              <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Coach Intro" allowfullscreen style="border-radius: 16px; width: 100%; height: 400px;"></iframe>
+            </div>
+          </div>
+        </div>
+
+      <section class="coaches-section mt-5">
+        <h2 class="text-center mb-5 fw-bold">Meet Our Coaching Staff</h2>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm h-100">
+              <img src="https://picsum.photos/400/300?random=40" class="card-img-top" alt="Head Coach" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Coach Johnson</h5>
+                <p class="text-muted small mb-2">Head Coach</p>
+                <p class="small">20+ years of XC coaching experience. Specializes in distance training and race strategy.</p>
+                <a href="mailto:johnson@marlborough-xc.org" class="btn btn-sm btn-primary">Contact →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm h-100">
+              <img src="https://picsum.photos/400/300?random=41" class="card-img-top" alt="Assistant Coach" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Coach Martinez</h5>
+                <p class="text-muted small mb-2">Assistant Coach</p>
+                <p class="small">Former collegiate runner. Focuses on speed work and interval training development.</p>
+                <a href="mailto:martinez@marlborough-xc.org" class="btn btn-sm btn-primary">Contact →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card shadow-sm h-100">
+              <img src="https://picsum.photos/400/300?random=42" class="card-img-top" alt="Strength Coach" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Coach Lee</h5>
+                <p class="text-muted small mb-2">Strength & Conditioning</p>
+                <p class="small">Certified strength coach. Ensures athletes stay healthy and injury-free throughout the season.</p>
+                <a href="mailto:lee@marlborough-xc.org" class="btn btn-sm btn-primary">Contact →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+                  <div class="coach-card">
+                    <img src="https://picsum.photos/seed/coach1/200/200" alt="Coach Sam">
+                    <div>
+                      <h5>Coach Sam</h5>
+                      <p>Head coach focusing on endurance and technique.</p>
+                      <div class="audio-player">
+                        <audio controls>
+                          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+                        </audio>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="coach-card">
+                    <img src="https://picsum.photos/seed/coach2/200/200" alt="Coach Riley">
+                    <div>
+                      <h5>Coach Riley</h5>
+                      <p>Strength &amp; conditioning specialist.</p>
+                      <div class="audio-player">
+                        <audio controls>
+                          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+                        </audio>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="faq mb-3">
+                <h3 class="mb-3">FAQ</h3>
+                <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="q1">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                        How do I join?
+                      </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">Fill out the contact form and the coach will follow up with next steps.</div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="q2">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                        What should I wear?
+                      </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+                      <div class="accordion-body">Wear comfortable running clothes and bring water. We recommend spikes for track sessions during race season.</div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="map mb-3">
+                <h3 class="mb-3">Find Us</h3>
+                <div class="map-embed mb-3">
+                  <iframe src="https://maps.google.com/maps?q=Boston,MA&amp;output=embed" width="100%" height="260" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+              </section>
+
+              <section class="newsletter">
+                <h3 class="mb-3">Stay in the loop</h3>
+                <form id="newsletterForm" class="d-flex gap-2">
+                  <input type="email" class="form-control" placeholder="Your email" required>
+                  <button class="btn btn-warning">Subscribe</button>
+                </form>
+              </section>
+
             </div>
           </div>
         </div>
@@ -65,11 +247,17 @@
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); alert('Message sent — we will reply within 48 hours.'); e.target.reset(); });
+    document.getElementById('newsletterForm').addEventListener('submit', function(e){ e.preventDefault(); alert('Subscribed — check your inbox.'); e.target.reset(); });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
   <script src="navbar.js"></script>
 </body>
 </html>

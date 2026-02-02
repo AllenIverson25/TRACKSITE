@@ -59,6 +59,20 @@ if (document.getElementById('app')) {
         };
         return badges[effort] || 'bg-secondary';
       },
+      addToCalendar(day) {
+        // Create a simple .ics calendar file for the selected day (placeholder start time)
+        const dt = new Date();
+        const uid = 'marlboroxc-' + (day.date ? day.date.replace(/\s+/g,'-') : Date.now());
+        const dtstamp = dt.toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
+        const summary = (day.summary || (this.selectedDayWorkout ? this.selectedDayWorkout.title : 'Training'));
+        const description = (this.selectedDayWorkout && this.selectedDayWorkout.description) ? this.selectedDayWorkout.description : (day.summary || '');
+        const ics = `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Marlboro XC//EN\nBEGIN:VEVENT\nUID:${uid}\nDTSTAMP:${dtstamp}\nDTSTART:${dtstamp}\nSUMMARY:${summary}\nDESCRIPTION:${description}\nEND:VEVENT\nEND:VCALENDAR`;
+        const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'marlboroxc-event.ics'; document.body.appendChild(a); a.click();
+        setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 1000);
+      },
       addWorkout() {
         if (!this.isCoachLoggedIn) {
           alert('You must be logged in as a coach to add workouts. Please go to the Admin page and log in.');
@@ -96,6 +110,9 @@ if (document.getElementById('app')) {
           // Show success message
           alert('Workout added successfully!');
         }
+      },
+      closeModal() {
+        this.selectedDay = null;
       }
     },
     async mounted() {
@@ -117,6 +134,13 @@ if (document.getElementById('app')) {
         if (workoutId) {
           this.selectedWorkout = this.workouts.find(w => w.id == workoutId);
         }
+
+        // Keyboard shortcut: Escape closes the modal
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            this.selectedDay = null;
+          }
+        });
       } catch (err) {
         console.error("Data load failed", err);
       }

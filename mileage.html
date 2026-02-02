@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marlboro XC Training Hub - Mileage Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .stat-box {
+      background: linear-gradient(135deg, #f5fafb 0%, #e3f2fd 100%);
+      border: 2px solid #1e88e5;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .stat-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(30, 136, 229, 0.2);
+      border-color: #1565c0;
+    }
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #1565c0;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.95rem;
+      color: #666;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .run-card {
+      background: white;
+      border-left: 4px solid #1e88e5;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+    .run-card:hover {
+      box-shadow: 0 8px 24px rgba(21, 101, 192, 0.15);
+      transform: translateX(4px);
+    }
+    .run-date {
+      font-weight: 700;
+      color: #1565c0;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .run-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .run-stat-item {
+      background: #f5fafb;
+      padding: 0.75rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .run-stat-value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1565c0;
+    }
+    .run-stat-label {
+      font-size: 0.75rem;
+      color: #999;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+    .form-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #e3f2fd;
+    }
+    .form-control, .form-select {
+      border-radius: 10px;
+      border: 2px solid #e3f2fd;
+      font-size: 1rem;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: #1e88e5;
+      box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+    }
+    .btn-log {
+      background: linear-gradient(135deg, #1565c0 0%, #1e88e5 100%);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+    .btn-log:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(21, 101, 192, 0.3);
+      color: white;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+  <nav class="advanced-navbar">
+    <div class="navbar-container">
+      <a class="navbar-logo" href="index.html">
+        <span class="logo-icon">🏃‍♂️</span>
+        <span class="logo-text">Marlboro XC</span>
+      </a>
+      <button class="navbar-toggler" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="mileage.html">Mileage</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a><span class="nav-indicator"></span></li>
+      </ul>
+      <div class="navbar-glow"></div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <section class="hero-section gradient-primary mt-3 mb-5">
+        <div class="hero-content">
+          <h1>📊 Mileage Tracker</h1>
+          <p class="fs-5">Track your weekly mileage and monitor your training progress with precision.</p>
+        </div>
+      </section>
+
+      <!-- Athlete Profile Section -->
+      <div class="row g-4 mb-5">
+        <div class="col-lg-4">
+          <div class="form-card">
+            <h3 class="mb-4 fw-bold text-primary">🏃 Athlete Profile</h3>
+            <form id="athleteForm">
+              <div class="mb-3">
+                <label for="athleteName" class="form-label fw-600">Your Name</label>
+                <input type="text" class="form-control" id="athleteName" placeholder="Enter your name" required>
+              </div>
+              <button type="submit" class="btn btn-log w-100">Save Profile</button>
+            </form>
+            <hr class="my-4">
+            <div id="profileDisplay" style="display: none;">
+              <p class="text-muted small mb-2">Current Athlete:</p>
+              <h5 id="currentAthlete" class="fw-bold text-primary mb-3"></h5>
+              <button class="btn btn-sm btn-outline-danger w-100" id="clearBtn">Clear Profile</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Log Mileage Form -->
+        <div class="col-lg-4">
+          <div class="form-card">
+            <h3 class="mb-4 fw-bold text-success">➕ Log Mileage</h3>
+            <form id="mileageForm">
+              <div class="mb-3">
+                <label for="mileageDate" class="form-label fw-600">Date</label>
+                <input type="date" class="form-control" id="mileageDate" required>
+              </div>
+              <div class="mb-3">
+                <label for="mileageDistance" class="form-label fw-600">Distance (miles)</label>
+                <input type="number" class="form-control" id="mileageDistance" placeholder="e.g., 5.5" step="0.1" min="0" required>
+              </div>
+              <div class="mb-3">
+                <label for="mileageTime" class="form-label fw-600">Time (minutes)</label>
+                <input type="number" class="form-control" id="mileageTime" placeholder="e.g., 45" min="0" required>
+              </div>
+              <div class="mb-3">
+                <label for="mileageNotes" class="form-label fw-600">Notes</label>
+                <textarea class="form-control" id="mileageNotes" placeholder="Easy run, tempo, etc." rows="2"></textarea>
+              </div>
+              <button type="submit" class="btn btn-log w-100">Log Run</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Weekly Stats -->
+        <div class="col-lg-4">
+          <div class="form-card">
+            <h3 class="mb-4 fw-bold text-info">📈 This Week</h3>
+            <div id="weeklyStats">
+              <div class="stat-box mb-3">
+                <div class="stat-value" id="totalMiles">0</div>
+                <div class="stat-label">Total Miles</div>
+              </div>
+              <div class="stat-box mb-3">
+                <div class="stat-value" id="totalRuns">0</div>
+                <div class="stat-label">Total Runs</div>
+              </div>
+              <div class="stat-box mb-3">
+                <div class="stat-value" id="avgPace">0:00</div>
+                <div class="stat-label">Avg Pace /mi</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value" id="totalTime">0h</div>
+                <div class="stat-label">Total Time</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Runs -->
+      <div class="row g-4 mb-5">
+        <div class="col-lg-12">
+          <div class="form-card">
+            <h3 class="mb-4 fw-bold">🏃 Recent Runs</h3>
+            <div id="mileageList" class="mileage-list">
+              <div class="empty-state">
+                <div class="empty-state-icon">📍</div>
+                <p class="text-muted">No runs logged yet. Start tracking your training!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Monthly Progress -->
+      <div class="row g-4">
+        <div class="col-lg-12">
+          <div class="form-card">
+            <h3 class="mb-4 fw-bold">📅 Monthly Progress</h3>
+            <div id="monthlyStats">
+              <div class="empty-state">
+                <div class="empty-state-icon">📊</div>
+                <p class="text-muted">Log some runs to see your monthly progress!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="navbar.js"></script>
+  <script>
+    // Mileage Tracker Application
+    const STORAGE_KEY = 'marlboro_xc_mileage';
+    const ATHLETE_KEY = 'marlboro_xc_athlete';
+
+    // Load athlete on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadAthlete();
+      renderMileage();
+      updateStats();
+      setDefaultDate();
+    });
+
+    function setDefaultDate() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('mileageDate').value = today;
+    }
+
+    function loadAthlete() {
+      const athlete = localStorage.getItem(ATHLETE_KEY);
+      if (athlete) {
+        document.getElementById('currentAthlete').textContent = athlete;
+        document.getElementById('profileDisplay').style.display = 'block';
+      }
+    }
+
+    document.getElementById('athleteForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('athleteName').value.trim();
+      if (!name) {
+        alert('Please enter your name');
+        return;
+      }
+      localStorage.setItem(ATHLETE_KEY, name);
+      document.getElementById('athleteName').value = '';
+      loadAthlete();
+      renderMileage();
+      updateStats();
+    });
+
+    document.getElementById('clearBtn').addEventListener('click', () => {
+      if (confirm('Clear all data for this athlete?')) {
+        const athlete = localStorage.getItem(ATHLETE_KEY);
+        if (athlete) {
+          localStorage.removeItem(`${STORAGE_KEY}_${athlete}`);
+        }
+        localStorage.removeItem(ATHLETE_KEY);
+        document.getElementById('profileDisplay').style.display = 'none';
+        document.getElementById('mileageList').innerHTML = '<div class="empty-state"><div class="empty-state-icon">📍</div><p class="text-muted">No runs logged yet.</p></div>';
+        updateStats();
+      }
+    });
+
+    document.getElementById('mileageForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const athlete = localStorage.getItem(ATHLETE_KEY);
+      if (!athlete) {
+        alert('Please set up your profile first!');
+        return;
+      }
+
+      const date = document.getElementById('mileageDate').value;
+      const distance = parseFloat(document.getElementById('mileageDistance').value);
+      const time = parseFloat(document.getElementById('mileageTime').value);
+      const notes = document.getElementById('mileageNotes').value;
+
+      if (distance <= 0 || time <= 0) {
+        alert('Please enter valid values');
+        return;
+      }
+
+      const data = getMileageData();
+      data.push({ date, distance, time, notes });
+      saveMileage(data);
+
+      document.getElementById('mileageForm').reset();
+      setDefaultDate();
+      renderMileage();
+      updateStats();
+    });
+
+    function saveMileage(data) {
+      const athlete = localStorage.getItem(ATHLETE_KEY);
+      if (athlete) {
+        localStorage.setItem(`${STORAGE_KEY}_${athlete}`, JSON.stringify(data));
+      }
+    }
+
+    function getMileageData() {
+      const athlete = localStorage.getItem(ATHLETE_KEY);
+      if (!athlete) return [];
+      const data = localStorage.getItem(`${STORAGE_KEY}_${athlete}`);
+      return data ? JSON.parse(data) : [];
+    }
+
+    function renderMileage() {
+      const data = getMileageData();
+      const listDiv = document.getElementById('mileageList');
+
+      if (data.length === 0) {
+        listDiv.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📍</div><p class="text-muted">No runs logged yet. Start tracking your training!</p></div>';
+        return;
+      }
+
+      const sorted = [...data].sort((a, b) => new Date(b.date) - new Date(a.date));
+      listDiv.innerHTML = sorted.map((run, idx) => {
+        const pace = formatPace(run.time / run.distance);
+        return `
+          <div class="run-card">
+            <div class="run-date">${formatDate(run.date)}</div>
+            <div class="run-stats">
+              <div class="run-stat-item">
+                <div class="run-stat-value">${run.distance.toFixed(2)}</div>
+                <div class="run-stat-label">Miles</div>
+              </div>
+              <div class="run-stat-item">
+                <div class="run-stat-value">${run.time}</div>
+                <div class="run-stat-label">Minutes</div>
+              </div>
+              <div class="run-stat-item">
+                <div class="run-stat-value">${pace}</div>
+                <div class="run-stat-label">Pace/mi</div>
+              </div>
+            </div>
+            ${run.notes ? `<p class="small text-muted mb-2"><strong>📝 Notes:</strong> ${run.notes}</p>` : ''}
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteRun(${idx})">Delete</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function deleteRun(idx) {
+      if (confirm('Delete this run?')) {
+        const data = getMileageData();
+        data.splice(idx, 1);
+        saveMileage(data);
+        renderMileage();
+        updateStats();
+      }
+    }
+
+    function updateStats() {
+      const data = getMileageData();
+      const weekRuns = getThisWeekRuns(data);
+
+      const totalMiles = weekRuns.reduce((sum, r) => sum + r.distance, 0);
+      const totalRuns = weekRuns.length;
+      const totalTime = weekRuns.reduce((sum, r) => sum + r.time, 0);
+      const avgPace = totalMiles > 0 ? formatPace(totalTime / totalMiles) : '0:00';
+
+      document.getElementById('totalMiles').textContent = totalMiles.toFixed(1);
+      document.getElementById('totalRuns').textContent = totalRuns;
+      document.getElementById('avgPace').textContent = avgPace;
+      document.getElementById('totalTime').textContent = `${(totalTime / 60).toFixed(1)}h`;
+    }
+
+    function getThisWeekRuns(runs) {
+      const today = new Date();
+      const monday = new Date(today);
+      monday.setDate(today.getDate() - today.getDay() + 1);
+      monday.setHours(0, 0, 0, 0);
+
+      return runs.filter(r => {
+        const runDate = new Date(r.date);
+        return runDate >= monday && runDate <= today;
+      });
+    }
+
+    function formatPace(paceMin) {
+      const min = Math.floor(paceMin);
+      const sec = Math.round((paceMin - min) * 60);
+      return `${min}:${sec.toString().padStart(2, '0')}`;
+    }
+
+    function formatDate(dateStr) {
+      const date = new Date(dateStr + 'T00:00:00');
+      return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    }
+  </script>
+</body>
+</html>

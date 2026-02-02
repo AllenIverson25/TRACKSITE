@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marlboro XC Training Hub - Home</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,6 +23,7 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="mileage.html">Mileage</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a><span class="nav-indicator"></span></li>
@@ -32,35 +33,124 @@
   </nav>
 
   <main>
-    <section id="home" class="hero-section">
-      <div class="container text-center">
-        <h1 class="display-4 fw-bold mb-4 animate-fade-in">Marlboro XC Training</h1>
-        <p class="lead text-muted mb-5 animate-slide-up">Weekly schedules • Workout details • Recovery tips</p>
-        <img src="https://picsum.photos/800/400?random=1" alt="Running track" class="img-fluid rounded shadow mb-5 animate-zoom-in">
-        <a href="schedule.html" class="btn btn-primary btn-lg animate-bounce">View Schedule →</a>
+    <section class="hero-section gradient-primary mt-3">
+      <div class="hero-content text-center">
+        <h1>🏃 Marlboro XC Training Hub</h1>
+        <p class="fs-5">Train smarter, run faster, achieve greatness. Your competitive edge starts here.</p>
+        <a href="schedule.html" class="btn btn-light btn-lg fw-bold">View Schedule →</a>
       </div>
     </section>
 
     <section class="announcements-section py-5">
       <div class="container">
-        <h2 class="text-center mb-4">Announcements</h2>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card shadow h-100">
-              <div class="card-body">
-                <small class="text-muted">2025-02-01</small>
-                <h5>February Training Starts</h5>
-                <p>Base building phase. Focus on consistency.</p>
-              </div>
+        <h2 class="text-center mb-5">Announcements & Updates</h2>
+        <div class="cards-grid">
+          <div class="card card-announce shadow-sm">
+            <div class="video-embed mb-3">
+              <img src="https://picsum.photos/seed/announcement1/600/300" alt="February Training" class="w-100 rounded" loading="lazy">
+            </div>
+            <div class="card-body">
+              <small class="text-muted">2025-02-01</small>
+              <h5>February Training Starts</h5>
+              <p>Base building phase. Focus on consistency and easy paces.</p>
+              <a href="#" class="btn btn-sm btn-primary">Learn More →</a>
             </div>
           </div>
-          <div class="col-md-6">
-            <div class="card shadow h-100">
-              <div class="card-body">
-                <small class="text-muted">2025-01-28</small>
-                <h5>Reminder</h5>
-                <p>Log your weekly mileage.</p>
-              </div>
+
+          <div class="card card-announce shadow-sm">
+            <div class="video-embed mb-3">
+              <video autoplay muted loop playsinline class="w-100 rounded">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="card-body">
+              <small class="text-muted">2025-01-28</small>
+              <h5>Log Your Weekly Mileage</h5>
+              <p>Track your progress with our built-in mileage tracker.</p>
+              <a href="mileage.html" class="btn btn-sm btn-success">Start Tracking →</a>
+            </div>
+          </div>
+
+          <div class="card card-announce shadow-sm">
+            <div class="video-embed mb-3">
+              <img src="https://picsum.photos/seed/announcement3/600/300" alt="Recovery" class="w-100 rounded" loading="lazy">
+            </div>
+            <div class="card-body">
+              <small class="text-muted">2025-01-25</small>
+              <h5>Recovery is Key</h5>
+              <p>New recovery tips and stretching routines available now.</p>
+              <a href="recovery.html" class="btn btn-sm btn-primary">Explore →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured-section py-5 bg-light">
+      <div class="container">
+        <div class="row align-items-center g-5 mb-5">
+          <div class="col-lg-6">
+            <h3 class="fw-bold mb-3">Training Philosophy</h3>
+            <p class="lead">We believe in building strong runners through structured training, recovery, and community support.</p>
+            <div class="video-embed rounded shadow-md">
+              <video controls playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img src="https://picsum.photos/600/400?random=2" alt="Training Philosophy" class="img-fluid rounded shadow-md" loading="lazy">
+          </div>
+        </div>
+
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <img src="https://picsum.photos/600/400?random=3" alt="Coach Training" class="img-fluid rounded shadow-md" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <h3 class="fw-bold mb-3">Expert Coaching</h3>
+            <p class="lead">Our coaches bring years of experience and passion for developing the next generation of XC runners.</p>
+            <div class="audio-player mb-3">
+              <audio controls style="width: 100%; margin-bottom: 10px;">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+              </audio>
+              <small class="text-muted d-block">Coach interview (2 min)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-section py-5">
+      <div class="container">
+        <h2 class="text-center mb-5">Program Highlights</h2>
+        <div class="row g-4 text-center">
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card p-4 rounded shadow-sm">
+              <div class="stat-number display-6 fw-bold text-primary mb-2">50+</div>
+              <p class="stat-label">Athletes Trained</p>
+              <img src="https://picsum.photos/200/150?random=4" alt="Athletes" class="img-fluid rounded mt-3" loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card p-4 rounded shadow-sm">
+              <div class="stat-number display-6 fw-bold text-success mb-2">100%</div>
+              <p class="stat-label">Dedicated Coaches</p>
+              <img src="https://picsum.photos/200/150?random=5" alt="Coaches" class="img-fluid rounded mt-3" loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card p-4 rounded shadow-sm">
+              <div class="stat-number display-6 fw-bold text-info mb-2">365</div>
+              <p class="stat-label">Days Per Year</p>
+              <img src="https://picsum.photos/200/150?random=6" alt="Training Days" class="img-fluid rounded mt-3" loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="stat-card p-4 rounded shadow-sm">
+              <div class="stat-number display-6 fw-bold text-warning mb-2">⚡</div>
+              <p class="stat-label">Peak Performance</p>
+              <img src="https://picsum.photos/200/150?random=7" alt="Performance" class="img-fluid rounded mt-3" loading="lazy">
             </div>
           </div>
         </div>
@@ -68,11 +158,13 @@
     </section>
   </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
   <script src="navbar.js"></script>
 </body>
 </html>

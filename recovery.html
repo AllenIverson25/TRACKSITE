@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marlboro XC Training Hub - Recovery</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,6 +23,7 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="mileage.html">Mileage</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a><span class="nav-indicator"></span></li>
@@ -33,45 +34,172 @@
 
   <main class="py-5">
     <div class="container">
-      <h1 class="text-center mb-5 animate-fade-in">Recovery & Fueling Basics</h1>
-      <img src="https://picsum.photos/800/300?random=5" alt="Recovery" class="img-fluid rounded shadow mb-5 animate-zoom-in">
+      <section class="hero-section gradient-primary mt-3 mb-5">
+        <div class="hero-content">
+          <h1>🌿 Recovery & Fueling</h1>
+          <p class="fs-5">Master the art of smart recovery to train harder and race faster.</p>
+        </div>
+      </section>
 
-      <div class="row g-4">
-        <div class="col-md-6">
-          <div class="card h-100 shadow-lg hover-lift">
+      <div class="row g-4 mb-5 align-items-stretch">
+        <div class="col-lg-8">
+          <div class="card shadow-lg h-100">
+            <div class="video-embed">
+              <video controls playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div class="card-body">
-              <h5 class="text-success">Recovery Guidelines</h5>
-              <ul class="list-unstyled">
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Sleep 8–10 hours every night</li>
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Stretch / foam roll after hard sessions</li>
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Easy days = truly easy effort</li>
-                <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Communicate pain or fatigue immediately</li>
-              </ul>
+              <h5 class="card-title">Quick Mobility Flow</h5>
+              <p class="card-text">A 6-minute post-run mobility routine you can do anywhere. Perfect for recovery after hard sessions.</p>
+              <a class="btn btn-secondary btn-sm" href="#">View Full Routine →</a>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card h-100 shadow-lg hover-lift">
+
+        <div class="col-lg-4">
+          <div class="card shadow-lg h-100">
+            <img src="https://picsum.photos/600/300?random=20" class="card-img-top" alt="Recovery Setup" loading="lazy">
             <div class="card-body">
-              <h5 class="text-warning">Fueling Tips</h5>
-              <ul class="list-unstyled">
-                <li class="mb-2"><i class="bi bi-lightning-fill text-warning me-2"></i>Eat carbs + protein within 30–60 min after practice</li>
-                <li class="mb-2"><i class="bi bi-lightning-fill text-warning me-2"></i>Drink water throughout the day + electrolytes on long runs</li>
-                <li class="mb-2"><i class="bi bi-lightning-fill text-warning me-2"></i>Never skip breakfast on practice days</li>
-                <li class="mb-2"><i class="bi bi-lightning-fill text-warning me-2"></i>Avoid heavy/fried food before hard workouts</li>
+              <h5 class="card-title">Recovery Guidelines</h5>
+              <ul class="list-unstyled small mb-0">
+                <li class="mb-2">✓ Sleep 8–10 hours every night</li>
+                <li class="mb-2">✓ Stretch / foam roll after hard sessions</li>
+                <li class="mb-2">✓ Easy days = truly easy effort</li>
+                <li class="mb-2">✓ Communicate pain or fatigue</li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="row g-4 mb-5 align-items-stretch">
+        <div class="col-lg-8">
+          <div class="card shadow-lg h-100">
+            <div class="video-embed">
+              <video autoplay muted loop playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Recovery Playlist</h5>
+              <p class="card-text">Curated relaxation beats for post-workout recovery and rest days.</p>
+              <div class="audio-player">
+                <audio controls style="width: 100%;">
+                  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+                </audio>
+                <small class="text-muted d-block mt-2">Cool down beats (8 min)</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card shadow-lg h-100">
+            <div class="card-body">
+              <h5 class="card-title text-success mb-3">Fueling Tips</h5>
+              <ul class="list-unstyled small">
+                <li class="mb-2">🍌 Carbs + protein within 30–60 min</li>
+                <li class="mb-2">💧 Water throughout the day</li>
+                <li class="mb-2">🥞 Never skip breakfast on practice days</li>
+                <li class="mb-2">🍕 Avoid heavy food before workouts</li>
+              </ul>
+              <div class="audio-player mt-3">
+                <audio controls style="width: 100%; margin-bottom: 10px;">
+                  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
+                </audio>
+                <small class="text-muted d-block">Nutrition tips (2 min)</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="mt-5">
+        <h3 class="mb-4 fw-bold">Guided Recovery Videos</h3>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+              <div class="video-embed">
+                <video controls playsinline>
+                  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Mobility Flow (6 min)</h5>
+                <p class="card-text">Quick routine to loosen hips and hamstrings after long runs.</p>
+                <a href="#" class="btn btn-sm btn-primary">Start Now →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+              <img src="https://picsum.photos/400/250?random=21" class="card-img-top" alt="Foam Rolling" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Foam Roll Basics</h5>
+                <p class="card-text">How to foam roll safely for optimal recovery.</p>
+                <a href="#" class="btn btn-sm btn-primary">Learn More →</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+              <div class="video-embed">
+                <video controls playsinline>
+                  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                </video>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Guided Breathing (5 min)</h5>
+                <p class="card-text">A short routine to help lower heart rate and aid recovery.</p>
+                <a href="#" class="btn btn-sm btn-primary">Begin →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-lg-8">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h5 class="card-title">Audio Guided Cooldown</h5>
+                <div class="audio-player">
+                  <audio controls style="width: 100%; margin-bottom: 10px;">
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
+                  </audio>
+                  <div class="transcript">Transcript: Follow the coach's voice to perform a controlled cooldown focusing on breath and light mobility. Perfect for post-run relaxation.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="card shadow-sm">
+              <img src="https://picsum.photos/400/250?random=22" class="card-img-top" alt="Downloads" loading="lazy">
+              <div class="card-body">
+                <h5 class="card-title">Resources & Downloads</h5>
+                <p class="card-text small">Get our recovery checklist and mobility PDF guides.</p>
+                <a class="btn btn-sm btn-primary" href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" target="_blank" download>📥 Download PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
   <script src="navbar.js"></script>
 </body>
 </html>

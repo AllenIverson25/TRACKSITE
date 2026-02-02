@@ -10,33 +10,35 @@ document.addEventListener('DOMContentLoaded', function() {
     navMenu.classList.toggle('active');
   });
 
-  // Close menu when a link is clicked
+  // Close menu when a link is clicked and set active classes
   navLinks.forEach(link => {
     link.addEventListener('click', function() {
       navToggle.classList.remove('active');
       navMenu.classList.remove('active');
 
-      // Add active indicator to current page
-      const currentPage = this.getAttribute('href').split('/').pop() || 'index.html';
-      const currentFilename = window.location.pathname.split('/').pop() || 'index.html';
+      // Add active class to matching link / nav item
+      const currentFilename = this.getAttribute('href').split('/').pop() || 'index.html';
 
       navLinks.forEach(l => {
         const linkPage = l.getAttribute('href').split('/').pop() || 'index.html';
         if (linkPage === currentFilename) {
-          l.parentElement.querySelector('.nav-indicator').style.width = '100%';
+          l.classList.add('active');
+          l.parentElement.classList.add('active');
         } else {
-          l.parentElement.querySelector('.nav-indicator').style.width = '0';
+          l.classList.remove('active');
+          l.parentElement.classList.remove('active');
         }
       });
     });
   });
 
-  // Set active indicator on page load
+  // Set active link on page load
   const currentFilename = window.location.pathname.split('/').pop() || 'index.html';
   navLinks.forEach(link => {
     const linkPage = link.getAttribute('href').split('/').pop() || 'index.html';
     if (linkPage === currentFilename) {
-      link.parentElement.querySelector('.nav-indicator').style.width = '100%';
+      link.classList.add('active');
+      link.parentElement.classList.add('active');
     }
   });
 
@@ -48,11 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
     if (scrollTop > 100) {
-      navbar.style.background = 'rgba(0, 61, 130, 0.95)';
-      navbar.style.boxShadow = '0 8px 32px 0 rgba(0, 61, 130, 0.5)';
+      navbar.classList.add('navbar-scrolled');
     } else {
-      navbar.style.background = 'rgba(0, 61, 130, 0.8)';
-      navbar.style.boxShadow = '0 8px 32px 0 rgba(0, 61, 130, 0.37)';
+      navbar.classList.remove('navbar-scrolled');
     }
 
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;

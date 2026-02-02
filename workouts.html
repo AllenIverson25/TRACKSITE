@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marlboro XC Training Hub - Workouts</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
   <nav class="advanced-navbar">
@@ -24,6 +25,7 @@
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="workouts.html">Workouts</a><span class="nav-indicator"></span></li>
+        <li class="nav-item"><a class="nav-link" href="mileage.html">Mileage</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="recovery.html">Recovery</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a><span class="nav-indicator"></span></li>
         <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a><span class="nav-indicator"></span></li>
@@ -34,13 +36,74 @@
 
   <main id="app" class="py-5">
     <div class="container">
-      <div class="d-flex justify-content-between align-items-center mb-5">
-        <h1 class="text-center flex-grow-1 animate-fade-in">Workout Library</h1>
+      <section class="hero-section gradient-warm mt-3 mb-5">
+        <div class="hero-content">
+          <h1>💪 Workout Library</h1>
+          <p class="fs-5">Carefully curated training sessions designed for cross-country success.</p>
+        </div>
+      </section>
+
+      <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap gap-3">
         <button v-if="isCoachLoggedIn" @click="showAddWorkoutForm = true" class="btn btn-success btn-lg">
           <i class="bi bi-plus-circle"></i> Add Workout
         </button>
       </div>
-      <img src="https://picsum.photos/800/300?random=3" alt="Workout library" class="img-fluid rounded shadow mb-5 animate-zoom-in">
+
+      <div class="row g-4 mb-5 align-items-stretch">
+        <div class="col-lg-12">
+          <div class="card shadow-lg h-100">
+            <div class="video-embed">
+              <video autoplay muted loop playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="card-body">
+              <h3 class="fw-bold mb-3">How to Use This Library</h3>
+              <p>Browse through our carefully curated collection of workouts designed specifically for cross-country training. Each workout includes detailed instructions, pacing guidelines, and recovery notes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-lg-12">
+          <div class="card shadow-lg h-100">
+            <div class="card-body">
+              <h3 class="fw-bold mb-3">Featured Workouts</h3>
+              <p class="lead mb-3">Explore our curated collection of training workouts designed to help you reach your peak performance.</p>
+              <div class="audio-player mb-3">
+                <audio controls style="width: 100%; margin-bottom: 10px;">
+                  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
+                </audio>
+                <small class="text-muted d-block">Workout motivation mix (4 min)</small>
+              </div>
+              <a href="#workoutShowcase" class="btn btn-primary btn-sm">View Showcase →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="workoutShowcase" class="carousel slide mb-5 rounded shadow-lg overflow-hidden" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://picsum.photos/1200/400?random=11" class="d-block w-100" alt="Showcase 1" loading="lazy">
+          </div>
+          <div class="carousel-item">
+            <img src="https://picsum.photos/1200/400?random=12" class="d-block w-100" alt="Showcase 2" loading="lazy">
+          </div>
+          <div class="carousel-item">
+            <img src="https://picsum.photos/1200/400?random=13" class="d-block w-100" alt="Showcase 3" loading="lazy">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#workoutShowcase" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#workoutShowcase" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
       <!-- Add Workout Modal -->
       <div v-if="showAddWorkoutForm" class="workout-modal-overlay">
@@ -113,7 +176,7 @@
                 <strong>Duration:</strong> {{ selectedWorkout.duration }}
               </div>
               <div class="col-md-6">
-                <img src="https://picsum.photos/400/200?random=4" alt="Workout" class="img-fluid rounded">
+                <img :src="'https://picsum.photos/seed/'+selectedWorkout.id+'/400/200'" :alt="selectedWorkout.title" class="img-fluid rounded" loading="lazy">
               </div>
             </div>
             <p class="mt-3"><strong>Description:</strong><br>{{ selectedWorkout.description }}</p>
@@ -125,7 +188,8 @@
       <div v-else>
         <div class="row g-4">
           <div v-for="workout in workouts" :key="workout.id" class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-lg hover-lift">
+            <div class="card h-100 shadow-sm">
+              <img :src="'https://picsum.photos/seed/'+workout.id+'/400/220'" :alt="workout.title" class="card-img-top img-fluid" loading="lazy">
               <div class="card-body">
                 <h5 class="card-title">{{ workout.title }}</h5>
                 <p class="card-text">{{ workout.type }} • {{ workout.distance }}</p>
@@ -138,12 +202,14 @@
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+  <footer class="site-footer text-center py-4">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Marlboro XC Training Hub. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
   <script src="navbar.js"></script>
 </body>
 </html>
