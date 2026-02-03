@@ -113,7 +113,7 @@
                   <div class="spec-item">
                     <i class="bi bi-tag-fill text-primary"></i>
                     <div>
-                      <strong>Type</strong>
+                      <strong>Type:</strong>
                       <span class="badge" :class="getTypeBadge(selectedWorkout.type)">
                         {{ selectedWorkout.type }}
                       </span>
@@ -123,7 +123,7 @@
                   <div class="spec-item">
                     <i class="bi bi-speedometer2 text-warning"></i>
                     <div>
-                      <strong>Effort</strong>
+                      <strong>Effort:</strong>
                       <span class="badge" :class="getEffortBadge(selectedWorkout.effort)">
                         {{ selectedWorkout.effort }}
                       </span>
@@ -133,7 +133,7 @@
                   <div class="spec-item">
                     <i class="bi bi-rulers text-success"></i>
                     <div>
-                      <strong>Distance</strong>
+                      <strong>Distance:</strong>
                       <span>{{ selectedWorkout.distance }}</span>
                     </div>
                   </div>
@@ -141,7 +141,7 @@
                   <div class="spec-item" v-if="selectedWorkout.duration">
                     <i class="bi bi-clock-fill text-info"></i>
                     <div>
-                      <strong>Duration</strong>
+                      <strong>Duration:</strong>
                       <span>{{ selectedWorkout.duration }}</span>
                     </div>
                   </div>
