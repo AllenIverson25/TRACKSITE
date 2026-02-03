@@ -9,13 +9,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <nav class="advanced-navbar">
+  <!-- Preloader -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__content">
+      <div class="preloader__spinner" aria-hidden="true"></div>
+      <div class="preloader__logo">Marlboro XC</div>
+      <span style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Loading...</span>
+    </div>
+  </div>
+
+  <nav class="advanced-navbar" id="mainNav">
     <div class="navbar-container">
       <a class="navbar-logo" href="index.html">
         <span class="logo-icon">🏃‍♂️</span>
         <span class="logo-text">Marlboro XC</span>
       </a>
-      <button class="navbar-toggler" id="navToggle">
+      <button class="navbar-toggler" id="navToggle" type="button" aria-label="Toggle menu">
         <span></span>
         <span></span>
         <span></span>
@@ -33,20 +42,53 @@
     </div>
   </nav>
 
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true">
+    <div class="scroll-progress__bar" id="scrollProgressBar"></div>
+  </div>
+
   <main>
-    <section class="hero-section gradient-primary mt-3">
-      <div class="hero-content text-center">
-        <h1>🏃 Marlboro XC Training Hub</h1>
-        <p class="fs-5">Train smarter, run faster, achieve greatness. Your competitive edge starts here.</p>
-        <a href="schedule.html" class="btn btn-light btn-lg fw-bold">View Schedule →</a>
+    <!-- Hero: split 60/40, animated gradient, left-aligned content, diagonal visual -->
+    <section class="hero-section hero--split" aria-label="Hero">
+      <div class="container-fluid">
+        <div class="hero__content-wrap">
+          <div class="hero-content">
+            <h1 class="hero__headline">Marlboro XC Training Hub</h1>
+            <p class="hero__tagline">Train smarter, run faster, achieve greatness. Your competitive edge starts here.</p>
+            <div class="hero__btns">
+              <a href="schedule.html" class="btn btn-light btn-lg fw-bold">View Schedule →</a>
+              <a href="workouts.html" class="btn btn-outline-primary btn-lg">Workout Library</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero__visual-wrap">
+          <div class="hero__visual">
+            <img src="imgs/Coach_ILiff.jpeg" alt="Marlboro XC Training" loading="eager">
+            <div class="hero__stats-float">
+              <div class="hero__stat-card"><span>50+</span> Athletes</div>
+              <div class="hero__stat-card"><span>365</span> Days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__scroll" aria-hidden="true">
+        <span class="hero__scroll-arrow"></span>
+        <span>Scroll</span>
       </div>
     </section>
 
+    <!-- Wave divider into next section -->
+    <div class="section-divider">
+      <svg class="section-divider--wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path d="M0 100L60 90C120 80 240 60 360 55C480 50 600 60 720 65C840 70 960 70 1080 65C1200 60 1320 50 1380 45L1440 40V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0Z"/>
+      </svg>
+    </div>
+
     <section class="announcements-section py-5">
       <div class="container">
-        <h2 class="text-center mb-5">Announcements & Updates</h2>
+        <h2 class="text-center mb-5 reveal">Announcements & Updates</h2>
         <div class="cards-grid">
-          <div class="card card-announce shadow-sm">
+          <div class="card card-announce shadow-sm reveal">
             <div class="video-embed mb-3">
               <img src="imgs/stretch3.avif" alt="February Training" class="w-100 rounded" loading="lazy">
             </div>
@@ -58,10 +100,10 @@
             </div>
           </div>
 
-          <div class="card card-announce shadow-sm">
+          <div class="card card-announce shadow-sm reveal">
             <div class="video-embed mb-3">
               <video autoplay muted loop playsinline class="w-100 rounded">
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <source src="videos/motivation.mp4" type="video/mp4">
               </video>
             </div>
             <div class="card-body">
@@ -72,7 +114,7 @@
             </div>
           </div>
 
-          <div class="card card-announce shadow-sm">
+          <div class="card card-announce shadow-sm reveal">
             <div class="video-embed mb-3">
               <img src="imgs/stretch2.jpg" alt="Recovery" class="w-100 rounded" loading="lazy">
             </div>
@@ -90,32 +132,32 @@
     <section class="featured-section py-5 bg-light">
       <div class="container">
         <div class="row align-items-center g-5 mb-5">
-          <div class="col-lg-6">
+          <div class="col-lg-6 reveal">
             <h3 class="fw-bold mb-3">Training Philosophy</h3>
             <p class="lead">We believe in building strong runners through structured training, recovery, and community support.</p>
-            <div class="video-embed rounded shadow-md">
+            <div class="video-embed rounded shadow">
               <video controls playsinline>
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <source src="videos/recovery.mp4" type="video/mp4">
               </video>
             </div>
           </div>
-          <div class="col-lg-6">
-            <img src="imgs/Coach_ILiff.jpeg" alt="Training Philosophy" class="img-fluid rounded shadow-md" loading="lazy">
+          <div class="col-lg-6 reveal">
+            <img src="imgs/Coach_ILiff.jpeg" alt="Training Philosophy" class="img-fluid rounded shadow" loading="lazy">
           </div>
         </div>
 
         <div class="row align-items-center g-5">
-          <div class="col-lg-6">
-            <img src="imgs/formcheck.webp" alt="Coach Training" class="img-fluid rounded shadow-md" loading="lazy">
+          <div class="col-lg-6 reveal">
+            <img src="imgs/formcheck.webp" alt="Coach Training" class="img-fluid rounded shadow" loading="lazy">
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-6 reveal">
             <h3 class="fw-bold mb-3">Expert Coaching</h3>
             <p class="lead">Our coaches bring years of experience and passion for developing the next generation of XC runners.</p>
             <div class="audio-player mb-3">
-              <audio controls style="width: 100%; margin-bottom: 10px;">
+              <audio controls>
                 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
               </audio>
-              <small class="text-muted d-block">Coach interview (2 min)</small>
+              <small class="text-muted d-block mt-2">Coach interview (2 min)</small>
             </div>
           </div>
         </div>
@@ -124,32 +166,32 @@
 
     <section class="stats-section py-5">
       <div class="container">
-        <h2 class="text-center mb-5">Program Highlights</h2>
+        <h2 class="text-center mb-5 reveal">Program Highlights</h2>
         <div class="row g-4 text-center">
           <div class="col-md-3 col-sm-6">
-            <div class="stat-card p-4 rounded shadow-sm">
-              <div class="stat-number display-6 fw-bold text-primary mb-2">50+</div>
+            <div class="stat-card p-4 rounded shadow-sm reveal">
+              <div class="stat-number fw-bold text-primary mb-2">50+</div>
               <p class="stat-label">Athletes Trained</p>
               <img src="imgs/stretch1.webp" alt="Athletes" class="img-fluid rounded mt-3" loading="lazy">
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
-            <div class="stat-card p-4 rounded shadow-sm">
-              <div class="stat-number display-6 fw-bold text-success mb-2">100%</div>
+            <div class="stat-card p-4 rounded shadow-sm reveal">
+              <div class="stat-number fw-bold text-primary mb-2">100%</div>
               <p class="stat-label">Dedicated Coaches</p>
               <img src="imgs/stretch4.webp" alt="Coaches" class="img-fluid rounded mt-3" loading="lazy">
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
-            <div class="stat-card p-4 rounded shadow-sm">
-              <div class="stat-number display-6 fw-bold text-info mb-2">365</div>
+            <div class="stat-card p-4 rounded shadow-sm reveal">
+              <div class="stat-number fw-bold text-primary mb-2">365</div>
               <p class="stat-label">Days Per Year</p>
               <img src="imgs/stretch2.jpg" alt="Training Days" class="img-fluid rounded mt-3" loading="lazy">
             </div>
           </div>
           <div class="col-md-3 col-sm-6">
-            <div class="stat-card p-4 rounded shadow-sm">
-              <div class="stat-number display-6 fw-bold text-warning mb-2">⚡</div>
+            <div class="stat-card p-4 rounded shadow-sm reveal">
+              <div class="stat-number fw-bold mb-2" style="color: var(--gold-primary);">⚡</div>
               <p class="stat-label">Peak Performance</p>
               <img src="imgs/formcheck.webp" alt="Performance" class="img-fluid rounded mt-3" loading="lazy">
             </div>
@@ -165,7 +207,13 @@
     </div>
   </footer>
 
+  <!-- Back to top -->
+  <button type="button" class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="bi bi-chevron-up" style="font-size: 1.25rem;"></i>
+  </button>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js"></script>
   <script src="navbar.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
