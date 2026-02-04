@@ -46,32 +46,7 @@
         <path d="M0 100L60 90C120 80 240 60 360 55C480 50 600 60 720 65C840 70 960 70 1080 65C1200 60 1320 50 1380 45L1440 40V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0Z"/>
       </svg>
     </div>
-    <div class="container page-content">
-      <div class="row g-4 mb-5 align-items-stretch">
-        <div class="col-lg-12">
-          <div class="video-embed mb-4 rounded shadow-lg">
-            <video autoplay muted loop playsinline>
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <div class="row g-4 mb-5 align-items-center">
-        <div class="col-lg-12">
-          <div class="alert alert-light shadow-sm mb-4 p-4 rounded-lg">
-            <h5 class="fw-bold mb-3">Weekly Coaching Notes</h5>
-            <div class="audio-player mb-3">
-              <audio controls style="width: 100%;">
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-              </audio>
-              <small class="text-muted d-block mt-2">Coach's weekly tips (3 min)</small>
-            </div>
-            <p class="small">Watch the video to the left for this week's training focus and important reminders.</p>
-          </div>
-        </div>
-      </div>
-
+    
       <div v-for="(week, weekKey) in schedule" :key="weekKey" class="mb-5 calendar-week">
         <h3 class="text-center mb-4">{{ week.weekOf }}</h3>
         <div class="calendar-grid">
@@ -105,7 +80,7 @@
                 <img v-else src="imgs/trackfolderimgs/IMG_0040.jpeg" class="img-fluid rounded mb-3" alt="Day image" loading="lazy">
                 <div class="audio-player mb-3">
                   <audio controls style="width: 100%;">
-                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    <source src="audios/EPIC Workout Motivation  Best David Goggins Compilation Ever.mp3" type="audio/mpeg">
                   </audio>
                   <small class="text-muted d-block mt-2">Coach's tip (30s)</small>
                 </div>
