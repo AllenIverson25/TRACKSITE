@@ -47,7 +47,7 @@
       </svg>
     </div>
     
-      <div v-for="(week, weekKey) in schedule" :key="weekKey" class="mb-5 calendar-week">
+      <div v-for="(week, weekKey) in schedule" :key="weekKey" class="mb-5 px-5 calendar-week">
         <h3 class="text-center mb-4">{{ week.weekOf }}</h3>
         <div class="calendar-grid">
           <div v-for="day in week.days" :key="day.date" class="calendar-day" :class="{ 'rest-day': day.isRest }">
