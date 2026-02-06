@@ -502,7 +502,8 @@ main { flex: 1; width: 100%; padding-top: var(--nav-height); }
   aspect-ratio: 4/5;
   border-radius: var(--radius-2xl);
   overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%, 0 85%);
+  /* Keep the bottom-left area intact for floating stats; cut top-right instead */
+  clip-path: polygon(0 0, 80% 0, 100% 12%, 100% 100%, 0 100%);
   box-shadow: var(--shadow-xl);
 }
 
