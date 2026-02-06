@@ -1199,11 +1199,32 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   cursor: pointer;
   font-family: inherit;
   color: var(--blue-dark);
+  transition: background-color 0.2s ease;
 }
 
-.accordion-collapse { display: none; }
-.accordion-collapse.show { display: block; }
-.accordion-body { padding: 1rem 1.25rem; background: var(--gray-50); color: var(--gray-700); }
+.accordion-button:hover {
+  background-color: var(--sky-blue);
+  color: var(--navy-dark);
+}
+
+.accordion-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.accordion-collapse.show {
+  max-height: 300px;
+  opacity: 1;
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+
+.accordion-body {
+  padding: 1rem 1.25rem;
+  background: var(--gray-50);
+  color: var(--gray-700);
+}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 991px) {
