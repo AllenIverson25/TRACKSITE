@@ -1,11 +1,11 @@
 {
   "announcements": [
-    {"date": "2025-02-01", "title": "February Training Starts", "text": "Base building phase. Focus on consistency."},
-    {"date": "2025-01-28", "title": "Reminder", "text": "Log your weekly mileage."}
+    {"date": "2026-02-01", "title": "February Training Starts", "text": "Base building phase. Focus on consistency."},
+    {"date": "2026-01-28", "title": "Reminder", "text": "Log your weekly mileage."}
   ],
   "schedule": {
     "week_feb1": {
-      "weekOf": "February 2–8, 2025",
+      "weekOf": "February 2–8, 2026",
       "days": [
         {"day":"Mon","date":"Feb 2","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
         {"day":"Tue","date":"Feb 3","type":"Tempo","summary":"Warm-up + 4 mi @ tempo","workoutId":2,"isRest":false},
@@ -17,7 +17,7 @@
       ]
     },
     "week_feb2": {
-      "weekOf": "February 9–15, 2025",
+      "weekOf": "February 9–15, 2026",
       "days": [
         {"day":"Mon","date":"Feb 9","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
         {"day":"Tue","date":"Feb 10","type":"Intervals","summary":"10×400m @ 5K pace","workoutId":7,"isRest":false},
@@ -29,7 +29,7 @@
       ]
     },
     "week_feb3": {
-      "weekOf": "February 16–22, 2025",
+      "weekOf": "February 16–22, 2026",
       "days": [
         {"day":"Mon","date":"Feb 16","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
         {"day":"Tue","date":"Feb 17","type":"Tempo","summary":"Warm-up + 5 mi @ tempo","workoutId":8,"isRest":false},
@@ -41,7 +41,7 @@
       ]
     },
     "week_feb4": {
-      "weekOf": "February 23–28, 2025",
+      "weekOf": "February 23–28, 2026",
       "days": [
         {"day":"Mon","date":"Feb 23","type":"Easy","summary":"5-6 mi easy","workoutId":1,"isRest":false},
         {"day":"Tue","date":"Feb 24","type":"Intervals","summary":"6×800m @ 5K pace","workoutId":12,"isRest":false},
