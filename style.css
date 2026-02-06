@@ -435,7 +435,8 @@ main { flex: 1; width: 100%; padding-top: var(--nav-height); }
   background: var(--gradient-hero);
   background-size: 200% 200%;
   animation: gradientShift 20s ease infinite;
-  overflow: hidden;
+  overflow: visible;
+  padding-bottom: 0;
 }
 
 @keyframes gradientShift {
@@ -454,12 +455,11 @@ main { flex: 1; width: 100%; padding-top: var(--nav-height); }
 .hero-section::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
   right: 0;
-  height: 120px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23f0f8ff' d='M0 120L48 110C96 100 192 80 288 70C384 60 480 60 576 65C672 70 768 80 864 85C960 90 1056 90 1152 85C1248 80 1344 70 1392 65L1440 60V120H1392C1344 120 1248 120 1152 120C1056 120 960 120 864 120C768 120 672 120 576 120C480 120 384 120 288 120C192 120 96 120 48 120H0Z'/%3E%3C/svg%3E") no-repeat bottom center;
-  background-size: 100% 120px;
+  height: 0;
+  background: none;
   pointer-events: none;
 }
 
@@ -664,14 +664,16 @@ main { flex: 1; width: 100%; padding-top: var(--nav-height); }
   width: 100%;
   line-height: 0;
   overflow: hidden;
-  margin-bottom: -1px;
+  margin: 0;
+  padding: 0;
+  display: block;
 }
 
 .section-divider svg {
   width: 100%;
   height: 100px;
   display: block;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 .section-divider--wave {
