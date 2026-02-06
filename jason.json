@@ -65,6 +65,7 @@
     {"id":10, "title":"Interval Run", "type":"interval", "effort":"hard", "distance":"8×600m", "duration":"30-35 min", "description":"8×600m @ 5K pace..."},
     {"id":11, "title":"Long Run", "type":"long", "effort":"steady", "distance":"12 mi", "duration":null, "description":"Building endurance..."},
     {"id":12, "title":"Interval Run", "type":"interval", "effort":"hard", "distance":"6×800m", "duration":"35-40 min", "description":"6×800m @ 5K pace..."},
-    {"id":13, "title":"Long Run", "type":"long", "effort":"steady", "distance":"13 mi", "duration":null, "description":"Building endurance..."}
+    {"id":13, "title":"Long Run", "type":"long", "effort":"steady", "distance":"13 mi", "duration":null, "description":"Building endurance..."},
+    {"id":14, "title":"Hill Repeats", "type":"interval", "effort":"hard", "distance":"8-10 repeats", "duration":"40-50 min", "description":"Warm-up + 8-10 hill repeats (90-120 sec each) at hard effort, jog recovery down. Builds strength and power. Cool down with easy 1-2 mi."}
   ]
 }
